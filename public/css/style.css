@@ -1,0 +1,37 @@
+*{
+    font-family: "Open Sans", sans-serif;
+}
+body{
+    background-color: #08152D;
+    color: rgba(255, 255, 255, 0.5);
+}
+.card{
+    background: #020B1C;
+    width: 25%;
+    height: 35%;
+}
+.title-connexion{
+    margin-bottom: 30px;
+}
+.button-select{
+    background: linear-gradient(to left, #1E64D7, #1ED761);
+}
+.button-unselect{
+    background: rgba(255, 255, 255, 0.05);
+}
+.form_select{
+    width: 50%;
+    border-radius: 5%;
+    margin-left: -2px;
+    margin-right: -2px;
+    margin-bottom: 30px;
+    padding: 5px;
+}
+.input{
+    background:  rgba(255, 255, 255, 0.25);
+    border: none;
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
