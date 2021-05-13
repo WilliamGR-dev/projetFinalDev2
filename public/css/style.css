@@ -5,7 +5,50 @@ body{
     background-color: #08152D;
     color: rgba(255, 255, 255, 0.5);
 }
-.card{
+.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link {
+    color: white;
+}
+.navbar-light .navbar-brand{
+    color: white;
+}
+.firstPage{
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+.slogan{
+    width: 100%;
+    font-size: 96px;
+    text-align: center;
+    color: #1E64D7;
+}
+.sectionNews{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.sectionNews > h2 {
+    margin-bottom: 50px;
+    font-size: 50px;
+}
+.news{
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    color: black;
+}
+.news > .card {
+    width: 25%;
+    margin: 25px;
+}
+.card-img, .card-img-bottom, .card-img-top {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+.card-connexion{
     background: #020B1C;
     width: 25%;
     height: 35%;

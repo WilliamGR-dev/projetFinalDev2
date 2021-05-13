@@ -8,29 +8,49 @@
         @include('head')
     </head>
     <body>
-    <section style="height: 100vh" class="d-flex justify-content-center align-items-center">
-        <div class="card">
-            <div class="card-body" id="login">
-                <h5 class="card-title text-center title-connexion">Connexion</h5>
-                <button type="button" class="form_select btn btn-primary button-select" name="login" onclick="showLogin()">Login</button>
-                <button type="button" class="form_select btn btn-primary button-unselect" name="register" onclick="showRegister()">Register</button>
-                <form action="{{ url('azf') }}" method="post" class="d-flex flex-column">
-                    @csrf
-                    <input type="email" class="input" name="email" placeholder="Entrée votre email">
-                    <input type="password" class="input" name="password" placeholder="Entrée votre mot de passe">
-                    <button href="#" class="btn btn-primary">Connexion</button>
-                </form>
-            </div>
-            <div class="card-body" id="register" style="display: none">
-                <h5 class="card-title text-center title-connexion">Inscription</h5>
-                <button class="form_select btn btn-primary button-unselect" name="login" onclick="showLogin()">Login</button>
-                <button class="form_select btn btn-primary button-select" name="register" onclick="showRegister()">Register</button>
-                <form action="{{ url('azf') }}" method="post" class="d-flex flex-column">
-                    @csrf
-                    <input type="email" class="input" name="email" placeholder="Entrée votre email">
-                    <input type="password" class="input" name="password" placeholder="Entrée votre mot de passe">
-                    <button href="#" class="btn btn-primary">Inscription</button>
-                </form>
+    @include('navbar')
+    <section style="height: 100vh" class="d-flex justify-content-center align-items-center flex-wrap">
+        <div class="firstPage">
+            <h1 class="slogan">Écouter,<br> ça change tout</h1>
+        </div>
+        <div class="sectionNews">
+            <h2>Actualité</h2>
+            <div class="news">
+                <div class="card"  >
+                    <img  src="https://picsum.photos/1000/1000" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+                <div class="card"  >
+                    <img  src="https://picsum.photos/1000/1000" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+                <div class="card"  >
+                    <img  src="https://picsum.photos/1000/1000" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+                <div class="card"  >
+                    <img  src="https://picsum.photos/1000/1000" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+                <div class="card"  >
+                    <img  src="https://picsum.photos/1000/1000" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
