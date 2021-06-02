@@ -11,6 +11,49 @@ body{
 .navbar-light .navbar-brand{
     color: white;
 }
+.searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 60px;
+    background-color: #353b48;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+}
+
+.searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 450px;
+    caret-color:#1E64D7;
+    transition: width 0.4s linear;
+}
+
+.searchbar:hover > .search_icon{
+    background: rgba(255, 255, 255, 0.05);
+    color: #1E64D7;
+}
+
+.search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #1E64D7;
+    text-decoration:none;
+}
 .firstPage{
     display: flex;
     align-items: center;
@@ -21,6 +64,19 @@ body{
     font-size: 96px;
     text-align: center;
     color: #1E64D7;
+}
+.sloganService{
+    width: 100%;
+    font-size: 96px;
+    color: #1E64D7;
+}
+.services{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 150px;
 }
 .sectionNews{
     display: flex;
@@ -37,10 +93,11 @@ body{
     align-content: center;
     justify-content: center;
     flex-wrap: wrap;
-    color: black;
+    color: white;
 }
 .news > .card {
     width: 25%;
+    background: rgba(255, 255, 255, 0.1);
     margin: 25px;
 }
 .card-img, .card-img-bottom, .card-img-top {
@@ -49,8 +106,7 @@ body{
     object-fit: cover;
 }
 .card-connexion{
-    background: #020B1C;
-    width: 25%;
+    width: 50%;
     height: 35%;
 }
 .title-connexion{
@@ -71,10 +127,58 @@ body{
     padding: 5px;
 }
 .input{
-    background:  rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0);
     border: none;
     width: 100%;
     padding: 5px 10px;
     font-size: 15px;
+    border-bottom-color: white;
+    border-bottom: ridge;
     margin-bottom: 30px;
+}
+.text-area{
+    background: rgba(255, 255, 255, 0);
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 15px;
+    margin-bottom: 30px;
+    border-color: #707070;
+    border-radius: 0px;
+}
+.input::placeholder{
+    color: white;
+    font-weight: bold;
+}
+.text-area::placeholder{
+    color: white;
+    font-weight: bold;
+}
+.w-90 {
+    width: 90%!important;
+}
+.service-card{
+    width: 25%;
+    background-color: #2d374b;
+}
+.w-30{
+    width: 30%;
+}
+.bg-pink{
+    background-color: #FF4B87 !important;
+}
+.ml-0{
+    margin-left: 0 !important;
+}
+.scroll::-webkit-scrollbar {
+    width: 1rem;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    background: rgba(170, 170, 170, 0);
+    border-radius: 99vmax;
+    border: 4px solid #212d42;
+}
+
+.scroll::-webkit-scrollbar-track {
+    background: rgba(17, 17, 17, 0);
 }
