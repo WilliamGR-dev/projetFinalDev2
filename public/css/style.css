@@ -182,3 +182,44 @@ body{
 .scroll::-webkit-scrollbar-track {
     background: rgba(17, 17, 17, 0);
 }
+.acces_fast{
+    padding-left: 50px;
+}
+.player{
+    height: 10vh;width: 100%;background-color: #020917;padding-left: 50px;padding-right: 250px
+}
+.changeUrl{
+    display: none !important;
+}
+@media (max-width: 992px) {
+    body{
+        overflow: hidden;
+    }
+     .icon_navbar{
+         font-size: 10px;
+     }
+    .acces_fast{
+        padding-left: 10px;
+        font-size: 12px;
+    }
+    .upgrade{
+        font-size: 9px;
+    }
+    .icon{
+        font-size: 12px;
+    }
+    .playlist{
+        font-size: 9px;
+    }
+    .player{
+        padding-left: 25px;
+        padding-right: 50px
+    }
+}
+
+@media (max-width: 640px) {
+    .changeUrl{
+        display: flex !important;
+        z-index: 999;
+    }
+}

@@ -10,8 +10,7 @@
     <body>
     @include('navbar')
     <section class="d-flex justify-content-center align-items-center flex-wrap w-90 m-auto">
-        <div class="firstPage justify-content-start" >
-            <div class="position-absolute" style="padding-left: 250px">
+        <div class="firstPage justify-content-start" ><div class="position-absolute" style="padding-left: 250px">
                 <h1 class="fw-bold" style="color: #5006A3">ILLIMITÉ</h1>
                 <h1 class="sloganService text-white fw-bold mt-3 mb-3">Passer en Premium<br>Soyez heureux</h1>
                 <button class="btn btn-light rounded-pill text-white mt-4" style="background-color: #5006A3;border-color: #5006A3">OBTENEZ LE PREMIUM</button>

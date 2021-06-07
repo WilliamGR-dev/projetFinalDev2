@@ -8,7 +8,7 @@
         @include('head')
     </head>
     <body class="d-flex flex-row app">
-    <section style="height: 100vh;width: 100%;" class="d-flex flex-wrap">
+    <section style="height: 100vh;width: 85%;" class="d-flex flex-wrap">
         <section style="height: 100vh;width: 100%;background-color: #051127" class="">
             <div style="padding-left: 50px;padding-top: 150px" class="overflow-hidden h-100">
                 <div class="h-100 scroll">

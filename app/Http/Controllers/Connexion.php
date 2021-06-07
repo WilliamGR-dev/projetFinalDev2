@@ -64,6 +64,30 @@ class Connexion extends Controller
     public function showFormUser(){
         return view('formuser')->with('connected', true);
     }
+    public function showAdminArtists(){
+        return view('adminartists')->with('connected', true);
+    }
+    public function showFormArtist(){
+        return view('formartist')->with('connected', true);
+    }
+    public function showAdminAlbums(){
+        return view('adminalbums')->with('connected', true);
+    }
+    public function showFormAlbum(){
+        return view('formalbum')->with('connected', true);
+    }
+    public function showAdminNews(){
+        return view('adminnews')->with('connected', true);
+    }
+    public function showFormNew(){
+        return view('formnew')->with('connected', true);
+    }
+    public function showAdminMusic(){
+        return view('adminmusics')->with('connected', true);
+    }
+    public function showFormMusic(){
+        return view('formmusic')->with('connected', true);
+    }
     public function showSubscribe(){
         return view('subscribe')->with('connected', true);
     }
@@ -75,5 +99,8 @@ class Connexion extends Controller
     }
     public function showCGU(){
         return view('cgu')->with('connected', true);
+    }
+    public function showLiked(){
+        return view('liked')->with('connected', true);
     }
 }
