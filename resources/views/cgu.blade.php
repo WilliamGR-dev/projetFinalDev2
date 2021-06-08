@@ -81,6 +81,12 @@
                                 <h3 class="m-3">PERSONNEL</h3>
                                 <h3 class="m-3">4,99€/mois</h3>
                             </div>
+
+                            <div class="w-75 mt-3 mb-3 d-flex flex-column"  >
+                                <label class="col-form-label">CODE PROMO</label>
+                                <input type="text" class="form_control" placeholder="Entrer le code promo">
+                            </div>
+
                             <div class="w-75 d-flex justify-content-between mt-5">
                                 <div>Panier</div>
                                 <div>4,99€</div>
