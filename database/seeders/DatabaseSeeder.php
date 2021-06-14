@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $faker = \Faker\Factory::create();
+
+        for ($i = 0; $i < 10; $i++) {
+            DB::table('news')->insert([
+                'title' => $faker->title,
+                'date' => $faker->date('Y-m-d'),
+                'text_description' => $faker->text('20'),
+                'full_text' => $faker->text('200'),
+                'publish' => $faker->boolean,
+            ]);
+    }
+
     }
 }

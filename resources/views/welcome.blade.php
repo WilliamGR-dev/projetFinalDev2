@@ -9,7 +9,7 @@
     </head>
     <body>
     @include('navbar')
-    <section class="d-flex justify-content-center align-items-center flex-wrap w-90 m-auto">
+    <section class="display-flex justify-content-center align-items-center flex-wrap w-90 m-auto">
         <div class="firstPage justify-content-center">
             <div class="position-absolute text-center">
                 <h1 class="slogan text-white fw-bold">Écouter,<br> ça change tout</h1>
@@ -49,41 +49,15 @@
         <div class="sectionNews">
             <h2>Actualité</h2>
             <div class="news">
-                <div class="card"  >
-                    <img  src="https://picsum.photos/1000/1000" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-                <div class="card"  >
-                    <img  src="https://picsum.photos/1000/1000" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-                <div class="card"  >
-                    <img  src="https://picsum.photos/1000/1000" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-                <div class="card"  >
-                    <img  src="https://picsum.photos/1000/1000" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-                <div class="card"  >
-                    <img  src="https://picsum.photos/1000/1000" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
+                @foreach($news as $new)
+                    <a href="{{ url('new/'.$new->id) }}" class="card" style="text-decoration-line: none;">
+                        <img  src="https://picsum.photos/1000/1000" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title text-white">{{ $new->title }}</h5>
+                            <p class="card-text text-secondary">{{ $new->text_description }}</p>
+                        </div>
+                    </a>
+                @endforeach
             </div>
         </div>
     </section>

@@ -7,7 +7,7 @@
         <title>Laravel</title>
         @include('head')
     </head>
-    <body class="d-flex flex-row app">
+    <body class="display-flex flex-row app">
     @include('navbar')
     <section style="height: 100vh;width: 85%;" class="d-flex flex-wrap">
         <section style="height: 90vh;width: 85%;background-color: #051127" class="">
@@ -20,28 +20,29 @@
                         <div  class="mb-5">
                             <div class="d-flex" style="padding-left: 30px;padding-top: 30px">
                                 <div class="bg-info" style="width: 150px;height: 150px"></div>
-                                <div class="text-white" style="margin-left: 50px"><h1>Prenom Nom</h1></div>
+                                <div class="text-white" style="margin-left: 50px"><h1>{{ session('user')->name }}</h1></div>
                             </div>
                             <div class="w-100 p-4 d-flex justify-content-end" style="background-color: #34465F;width: 100%;margin-top: -100px">
                                 <a href="{{ url('subscribe') }}" class="btn btn-light rounded-pill text-decoration-none text-dark">Abonnement</a>
                             </div>
                         </div>
-                        <form class="d-flex flex-wrap w-100">
+                        <form class="d-flex flex-wrap w-100" method="post" action="{{url('profile')}}">
+                            @csrf
                             <div class="w-50 p-4 " style="padding: 0 100px 30px 0">
-                                <label>Nom</label>
-                                <input class="form-control " name="lastname">
+                                <label>Nom Prenom</label>
+                                <input class="form-control " name="name" value="{{ session('user')->name }}">
                             </div>
                             <div class="w-50 p-4 " style="padding: 0 100px 30px 0">
-                                <label>Prenom</label>
-                                <input class="form-control " name="lastname">
+                                <label>Email</label>
+                                <input class="form-control " name="email" value="{{ session('user')->email }}">
                             </div>
                             <div class="w-50 p-4 " style="padding: 0 100px 30px 0">
                                 <label>Password</label>
-                                <input class="form-control " name="lastname">
+                                <input class="form-control " name="password" placeholder="">
                             </div>
                             <div class="w-50 p-4 " style="padding: 0 100px 30px 0">
                                 <label>Confirme Password</label>
-                                <input class="form-control " name="lastname">
+                                <input class="form-control " name="confirmPassword" placeholder="">
                             </div>
                             <button class=" m-4 p-2 btn btn-outline-light border-0 rounded-pill w-25 fw-bold" style="background: linear-gradient(to left, #1ED761, #1E64D7);color: black">Modifier</button>
                         </form>

@@ -5,9 +5,9 @@
                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
                    <circle id="Oval_4" data-name="Oval 4" cx="17.5" cy="17.5" r="17.5" fill="#616161"/>
                </svg>
-               <span>Enura Indula</span>
+               <span>{{session('user')->name}}</span>
            </a>
-            <a href="{{ url('') }}" class="text-white text-decoration-none">
+            <a href="{{ url('logout') }}" class="text-white text-decoration-none">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-closed" viewBox="0 0 16 16">
                     <path d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z"/>
                     <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"/>

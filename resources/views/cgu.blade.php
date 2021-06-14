@@ -6,16 +6,22 @@
 
         <title>Laravel</title>
         @include('head')
+        <script src="https://js.stripe.com/v3/"></script>
+        <style>
+            .InputElement{
+                color: white !important;
+            }
+        </style>
     </head>
-    <body class="d-flex flex-row app">
-    <section style="height: 100vh;width: 85%;" class="d-flex flex-wrap">
+    <body class="display-flex flex-row app 100">
+    <section style="height: 100vh;width: 100%;" class="d-flex flex-wrap">
         <section style="height: 100vh;width: 100%;background-color: #051127" class="">
             <div style="padding-left: 50px;padding-top: 150px" class="overflow-hidden h-100">
                 <div class="h-100 scroll">
                     @include('navbarprofile')
                     <hr>
                     <h3 class="text-white" style="margin-top: 100px">Informations Clients</h3>
-                    <div class="d-flex">
+                    <form method="post" id="payment-form" class="d-flex">
                         <div class="w-25">
                             <h3>Youzik autorisation</h3>
                             <div class="rounded-1 bg-light p-5 text-dark w-100">
@@ -28,7 +34,7 @@
                         </div>
                         <div class="w-50" style="margin: 0 100px" >
                             <h4 class="w-100">Termes et conditions</h4>
-                            <div class="w-100 scroll text-center" style="overflow-y: scroll;height: 400px">
+                            <div class="w-100 scroll text-center" style="overflow-y: scroll;height: 200px">
                                 Bienvenue sur le site Web YouZik!
 
                                 Ces termes et conditions décrivent les règles et réglementations relatives à l'utilisation du site Web de YouZik, situé à youzik.com.
@@ -75,6 +81,8 @@
                                 Entreprises accréditées à l'échelle du système, à l'exception de la sollicitation d'organisations à but non lucratif, de centres commerciaux caritatifs et de groupes de collecte de fonds caritatifs qui ne peuvent pas créer de lien hypertexte vers notre site Web.
                                 Ces organisations peuvent créer un lien vers notre page d'accueil, vers des publications ou vers d'autres informations sur le site Web à condition que le lien: (a) ne soit en aucun cas trompeur; (b) n'implique pas à tort un parrainage, une approbation ou une approbation de la partie liante et de ses produits et / ou services; et (c) s'inscrit dans le contexte du site de la partie liante.
                             </div>
+                            <input type="text" class="form-control" id="name" name="name">
+                            <div id="card-element" class="mt-5 text-white"></div>
                         </div>
                         <div class="w-50" style="margin-right: 100px">
                             <div class="rounded-1 bg-light p-5 text-dark w-75 d-flex flex-column align-items-center ">
@@ -96,12 +104,61 @@
                                 <div>4,99€</div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                     <button class="btn btn-outline-light">Annuler</button>
-                    <button class="btn btn-outline-light">Continuer</button>
+                    <button id="card-button" class="btn btn-outline-light" data-secret="">Payer maintenant</button>
                 </div>
             </div>
         </section>
     </section>
     </body>
+    <script>
+        const stripe = Stripe('{{ env('STRIPE_KEY') }}');
+        const elements = stripe.elements();
+        const card = elements.create("card", {
+            style: {
+                base:{
+                    color:'#fff'
+                }
+            }
+        });
+        card.mount("#card-element");
+        const cardHolderName = document.getElementById('name');
+        const cardButton = document.getElementById('card-button');
+        const clientSecret = cardButton.dataset.secret;
+        card.on('change', ({error}) => {
+            let displayError = document.getElementById('card-errors');
+            if (error) {
+                displayError.textContent = error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+        const form = document.getElementById('payment-form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            let displayError = document.getElementById('card-errors');
+            const { setupIntent, error } = await stripe.confirmCardSetup(
+                clientSecret, {
+                    payment_method: {
+                        card: card,
+                        billing_details: { name: cardHolderName.value }
+                    }
+                }
+            );
+            if (error) {
+                displayError.textContent = error.message;
+            } else {
+                displayError.textContent = '';
+                //console.log(setupIntent);
+
+                let paymentMethod = document.createElement('input');
+                paymentMethod.setAttribute('type', 'hidden');
+                paymentMethod.setAttribute('name', 'payment_method');
+                paymentMethod.value = setupIntent.payment_method;
+                form.appendChild(paymentMethod);
+                form.submit();
+            }
+        });
+    </script>
 </html>

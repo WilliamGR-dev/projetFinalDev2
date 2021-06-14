@@ -30,13 +30,13 @@
             </div>
             <div class="card bg-transparent border-0 w-75 p-5 pt-1">
                 <div class="card-body p-0" id="login">
-                    <form action="{{ url('azf') }}" method="post" class="d-flex flex-column">
+                    <form action="{{ url('contact') }}" method="post" class="d-flex flex-column text">
                         @csrf
-                        <input type="text" class="input" name="last_name" placeholder="PRENOM">
-                        <input type="text" class="input mt-3" name="first_name" placeholder="NOM">
-                        <input type="email" class="input mt-3" name="email" placeholder="EMAIL">
-                        <input type="text" class="input mt-3" name="object" placeholder="OBJECT">
-                        <textarea class="form-control text-area" style="background: rgba(255,255,255,0.09)" rows="7" name="message" placeholder="MESSAGE"></textarea>
+                        <input type="text" class="input mt-3 text-white" name="first_name" placeholder="PRENOM">
+                        <input type="text" class="input mt-3 text-white" name="last_name" placeholder="NOM">
+                        <input type="email" class="input mt-3 text-white" name="email" placeholder="EMAIL">
+                        <input type="text" class="input mt-3 text-white" name="object" placeholder="OBJECT">
+                        <textarea class="form-control text-area text-white" style="background: rgba(255,255,255,0.09)" rows="7" name="message" placeholder="MESSAGE"></textarea>
                         <button href="#" class="btn btn-primary w-25 m-auto p-3 rounded-pill mt-3 fw-bold" style="background: linear-gradient(300deg, #5500C9, #2b8bfa);border: none">Envoyer</button>
                     </form>
                 </div>

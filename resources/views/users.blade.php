@@ -7,7 +7,7 @@
         <title>Laravel</title>
         @include('head')
     </head>
-    <body class="d-flex flex-row app">
+    <body class="display-flex flex-row app">
     @include('navbar')
     <section style="height: 100vh;width: 85%;" class="d-flex flex-wrap">
         <section style="height: 90vh;width: 85%;background-color: #051127" class="">
@@ -18,13 +18,12 @@
                     <hr>
                     <div>
                         <h3>Ajouter un utilisateurs</h3>
-                        <button class="btn btn-light">Ajouter</button>
+                        <a href="{{ url('formuser') }}" class="btn btn-light">Ajouter</a>
                     </div>
                     <table class="w-90 table table-striped table-light table-hover" style="margin-top: 50px">
                         <thead>
                         <tr>
-                            <td>NOM</td>
-                            <td>PRENOM</td>
+                            <td>NOM / PRENOM</td>
                             <td>EMAIL</td>
                             <td>IS ADMIN</td>
                             <td>CREATED AT</td>
@@ -32,19 +31,20 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>William</td>
-                            <td>William</td>
-                            <td>William@gmail.com</td>
-                            <td>Admin</td>
-                            <td>30/05/2021</td>
-                            <td>
-                                <div class="d-flex flex-row">
-                                    <div style="margin: 0 10px"><a>Modifier</a></div>
-                                    <div style="margin: 0 10px"><a>Supprimer</a></div>
-                                </div>
-                            </td>
-                        </tr>
+                        @foreach($allUsers as $user)
+                            <tr>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>@if($user->is_admin==0) Utilisateur @else Admin @endif</td>
+                                <td>{{ $user->created_at }}</td>
+                                <td>
+                                    <div class="d-flex flex-row">
+                                        <div  style="margin: 0 10px"><a href="{{ url('formuser/'.$user->id) }}">Modifier</a></div >
+                                        <div  style="margin: 0 10px"><a href="{{ url('deleteuser/'.$user->id) }}">Supprimer</a></div >
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

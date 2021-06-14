@@ -7,7 +7,7 @@
     <title>Laravel</title>
     @include('head')
 </head>
-<body class="d-flex flex-row app">
+<body class="display-flex flex-row app">
 @include('navbar')
 <section style="height: 100vh;width: 85%;" class="d-flex flex-wrap">
     <section style="height: 90vh;width: 85%;background-color: #051127" class="">

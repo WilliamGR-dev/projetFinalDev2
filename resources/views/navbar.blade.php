@@ -1,4 +1,4 @@
-<div class="changeUrl bg-light vh-100 vw-100 position-absolute text-dark d-flex align-items-center justify-content-center flex-column">
+<div class="changeUrl bg-light vh-100 vw-100 position-absolute text-dark display-flex align-items-center justify-content-center flex-column">
     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
         <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
         <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
@@ -8,7 +8,7 @@
     </div>
     <a href="" class="text-dark">Application ici</a>
 </div>
-@if(isset($connected))
+@if(session('user') !== null)
         <nav class="navbar navbar-expand-lg navbar-light vh-100 p-0" style="background-color: rgba(255,255,255,0.1);width: 15vw;">
         <div class="container-fluid w-100 h-100 p-0 d-flex flex-column" style="flex-wrap: initial">
             <a class="navbar-brand icon_navbar" href="{{ url('/home') }}">
