@@ -16,9 +16,19 @@ class CreateYouzikTable extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('date');
+            $table->date('date');
             $table->string('text_description');
             $table->string('full_text');
+            $table->boolean('publish');
+            $table->timestamps();
+        });
+
+        Schema::create('albums', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->date('date');
+            $table->string('text_description');
+            $table->int('artist_id');
             $table->boolean('publish');
             $table->timestamps();
         });
