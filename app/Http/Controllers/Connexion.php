@@ -291,11 +291,25 @@ class Connexion extends Controller
     public function showInformations(){
         return view('informations')->with('connected', true);
     }
-    public function showCGU(Request $request){
-        dd($request);
+    public function showCGU(){
         $user = User::find(session('user')->id);
-        $user->createAsStripeCustomer();
-        return view('cgu')->with('connected', true);
+        $intent = $user->createSetupIntent();
+        return view('cgu')->with('intent', $intent);
+    }
+    public function checkoutPayement(Request $request){
+        $user = User::find(session('user')->id);
+        try {
+            $subscription = $user
+                ->newSubscription('default', 'price_1J2H1vGsegk9YRQoKXhtXvqW')
+                ->withCoupon($request->coupon)
+                ->create($request->payment_method);
+        } catch (IncompletePayment $e) {
+            return redirect()->route('cashier.payment', [
+                $e->payment->id, 'redirect' => route('payments.error')
+            ]);
+        }
+
+        return view('home');
     }
     public function showLiked(){
         return view('liked')->with('connected', true);

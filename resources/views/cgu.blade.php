@@ -17,11 +17,12 @@
     <section style="height: 100vh;width: 100%;" class="d-flex flex-wrap">
         <section style="height: 100vh;width: 100%;background-color: #051127" class="">
             <div style="padding-left: 50px;padding-top: 150px" class="overflow-hidden h-100">
-                <div class="h-100 scroll">
+                <form method="post" id="payment-form" class="h-100 scroll">
+                    @csrf
                     @include('navbarprofile')
                     <hr>
                     <h3 class="text-white" style="margin-top: 100px">Informations Clients</h3>
-                    <form method="post" id="payment-form" class="d-flex">
+                    <div  class="d-flex">
                         <div class="w-25">
                             <h3>Youzik autorisation</h3>
                             <div class="rounded-1 bg-light p-5 text-dark w-100">
@@ -81,8 +82,9 @@
                                 Entreprises accréditées à l'échelle du système, à l'exception de la sollicitation d'organisations à but non lucratif, de centres commerciaux caritatifs et de groupes de collecte de fonds caritatifs qui ne peuvent pas créer de lien hypertexte vers notre site Web.
                                 Ces organisations peuvent créer un lien vers notre page d'accueil, vers des publications ou vers d'autres informations sur le site Web à condition que le lien: (a) ne soit en aucun cas trompeur; (b) n'implique pas à tort un parrainage, une approbation ou une approbation de la partie liante et de ses produits et / ou services; et (c) s'inscrit dans le contexte du site de la partie liante.
                             </div>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="hidden" class="form-control" id="name" name="name" value="{{ session('user')->name }}">
                             <div id="card-element" class="mt-5 text-white"></div>
+                            <div class="text-danger" id="card-errors" role="alert" class="mb-4"></div>
                         </div>
                         <div class="w-50" style="margin-right: 100px">
                             <div class="rounded-1 bg-light p-5 text-dark w-75 d-flex flex-column align-items-center ">
@@ -92,7 +94,7 @@
 
                             <div class="w-75 mt-3 mb-3 d-flex flex-column"  >
                                 <label class="col-form-label">CODE PROMO</label>
-                                <input type="text" class="form_control" placeholder="Entrer le code promo">
+                                <input type="text" class="form_control" name="coupon" placeholder="Entrer le code promo">
                             </div>
 
                             <div class="w-75 d-flex justify-content-between mt-5">
@@ -104,10 +106,10 @@
                                 <div>4,99€</div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                     <button class="btn btn-outline-light">Annuler</button>
-                    <button id="card-button" class="btn btn-outline-light" data-secret="">Payer maintenant</button>
-                </div>
+                    <button type="submit" id="card-button" class="btn btn-outline-light" data-secret="{{ $intent->client_secret }}">Payer maintenant</button>
+                </form>
             </div>
         </section>
     </section>
@@ -136,6 +138,7 @@
         });
         const form = document.getElementById('payment-form');
         form.addEventListener('submit', async (e) => {
+            console.log('azfazfazf')
             e.preventDefault();
             let displayError = document.getElementById('card-errors');
             const { setupIntent, error } = await stripe.confirmCardSetup(

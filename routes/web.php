@@ -60,5 +60,6 @@ Route::get('/upgrade', 'App\Http\Controllers\Connexion@showUpgrade');
 Route::get('/plans', 'App\Http\Controllers\Connexion@showPlans');
 Route::get('/informations', 'App\Http\Controllers\Connexion@showInformations');
 Route::get('/cgu', 'App\Http\Controllers\Connexion@showCGU');
+Route::post('/cgu', 'App\Http\Controllers\Connexion@checkoutPayement');
 Route::get('/payement', 'App\Http\Controllers\Connexion@showPayement');
 Route::get('/liked', 'App\Http\Controllers\Connexion@showLiked');
