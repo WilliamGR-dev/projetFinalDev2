@@ -25,6 +25,9 @@
                             <div class="w-100 p-4 d-flex justify-content-end" style="background-color: #34465F;width: 100%;margin-top: -100px">
                                 <a href="{{ url('subscribe') }}" class="btn btn-light rounded-pill text-decoration-none text-dark">Abonnement</a>
                             </div>
+                            <div class="w-100 p-4 d-flex justify-content-end" style="background-color: #34465F;width: 100%;margin-top: -100px">
+                                <a href="{{ \App\Models\User::find(session('user')->id)->billingPortalUrl(route('account') }}" class="btn btn-light rounded-pill text-decoration-none text-dark">Gerer Abonnement</a>
+                            </div>
                         </div>
                         <form class="d-flex flex-wrap w-100" method="post" action="{{url('profile')}}">
                             @csrf
