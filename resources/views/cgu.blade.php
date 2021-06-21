@@ -78,7 +78,6 @@
                                 Organismes gouvernementaux;
                                 Moteurs de recherche;
                                 Organisations de presse;
-                                Les distributeurs d'annuaires en ligne peuvent créer un lien vers notre site Web de la même manière qu'ils créent un lien hypertexte vers les sites Web d'autres entreprises cotées; et
                                 Entreprises accréditées à l'échelle du système, à l'exception de la sollicitation d'organisations à but non lucratif, de centres commerciaux caritatifs et de groupes de collecte de fonds caritatifs qui ne peuvent pas créer de lien hypertexte vers notre site Web.
                                 Ces organisations peuvent créer un lien vers notre page d'accueil, vers des publications ou vers d'autres informations sur le site Web à condition que le lien: (a) ne soit en aucun cas trompeur; (b) n'implique pas à tort un parrainage, une approbation ou une approbation de la partie liante et de ses produits et / ou services; et (c) s'inscrit dans le contexte du site de la partie liante.
                             </div>
@@ -88,8 +87,8 @@
                         </div>
                         <div class="w-50" style="margin-right: 100px">
                             <div class="rounded-1 bg-light p-5 text-dark w-75 d-flex flex-column align-items-center ">
-                                <h3 class="m-3">PERSONNEL</h3>
-                                <h3 class="m-3">4,99€/mois</h3>
+                                <h3 class="m-3">{{ $plan['name'] }}</h3>
+                                <h3 class="m-3">{{ $plan['price'] }}€/mois</h3>
                             </div>
 
                             <div class="w-75 mt-3 mb-3 d-flex flex-column"  >
@@ -99,12 +98,13 @@
 
                             <div class="w-75 d-flex justify-content-between mt-5">
                                 <div>Panier</div>
-                                <div>4,99€</div>
+                                <div>{{ $plan['price'] }}€</div>
                             </div>
                             <div class="w-75 d-flex justify-content-between mt-5">
                                 <div>Total</div>
-                                <div>4,99€</div>
+                                <div>{{ $plan['price'] }}€</div>
                             </div>
+                            <input type="hidden" name="id" value="{{ $plan['id'] }}">
                         </div>
                     </div>
                     <button class="btn btn-outline-light">Annuler</button>
@@ -138,7 +138,6 @@
         });
         const form = document.getElementById('payment-form');
         form.addEventListener('submit', async (e) => {
-            console.log('azfazfazf')
             e.preventDefault();
             let displayError = document.getElementById('card-errors');
             const { setupIntent, error } = await stripe.confirmCardSetup(

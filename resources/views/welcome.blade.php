@@ -51,7 +51,7 @@
             <div class="news">
                 @foreach($news as $new)
                     <a href="{{ url('new/'.$new->id) }}" class="card" style="text-decoration-line: none;">
-                        <img  src="https://picsum.photos/1000/1000" class="card-img-top" alt="...">
+                        <img  src="@if($new->url != null){{ $new->url }} @else https://picsum.photos/1000/1000 @endif" class="card-img-top" style="object-fit: contain" alt="...">
                         <div class="card-body">
                             <h5 class="card-title text-white">{{ $new->title }}</h5>
                             <p class="card-text text-secondary">{{ $new->text_description }}</p>

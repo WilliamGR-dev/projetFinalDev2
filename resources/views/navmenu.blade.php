@@ -17,7 +17,9 @@
     </div>
     <div class="text-center">
         <div>
+            @if(session('user')->subscribeNow != true)
             <a class="btn btn-light rounded-pill fw-bold w-75 upgrade" style="background: linear-gradient(to left, #1E64D7, #1ED761);border: none" href="{{ url('upgrade') }}">UPGRADE</a>
+            @endif
         </div>
     </div>
 </section>

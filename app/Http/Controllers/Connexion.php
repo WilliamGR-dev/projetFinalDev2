@@ -12,17 +12,10 @@ use Laravel\Cashier\Cashier;
 class Connexion extends Controller
 {
     //
-    public function checkIsConnected(){
-        if (session('user') == null){
-            return redirect('');
-        }
-    }
-    public function checkIsAdmin(){
-        if (session('user')->is_admin == 0){
-            return redirect('home');
-        }
-    }
     public function showWelcome(){
+        if (session()->has('user')){
+            return redirect('home');
+        };
         $news = DB::table('news')->where('publish',1)->inRandomOrder()->limit(5)->get();
         return view('welcome')->with('news',$news);
     }
@@ -30,6 +23,9 @@ class Connexion extends Controller
         return view('connexion');
     }
     public function connectUser(Request $request){
+        if (session()->has('user')){
+            return redirect('home');
+        };
         $request->validate([
             'password' => 'required',
             'email' => 'required'
@@ -39,6 +35,8 @@ class Connexion extends Controller
             return redirect('connexion');
         }
         if(Hash::check($request->password,$userExist->password)){
+            $user = User::find($userExist->id);
+            $userExist->subscribeNow = $user->subscribed('default');
             session(['user' => $userExist]) ;
         }
         else{
@@ -57,21 +55,29 @@ class Connexion extends Controller
         DB::table('users')->insert([
             'name' => $request->name,
             'password' => $password,
-            'email' => $request->email
+            'email' => $request->email,
         ]);
 
         return view('connexion');
     }
     public function disconnectUser(){
-        $this->checkIsConnected();
+        if (session('user') == null){
+            return redirect('');
+        }
         session()->forget('user');
 
         return redirect('/');
     }
     public function showServices(){
+        if (session()->has('user')){
+            return redirect('home');
+        };
         return view('services');
     }
     public function showNews(){
+        if (session()->has('user')){
+            return redirect('home');
+        };
         $allNews = DB::table('news')->where('publish', 1)->paginate(2);
 
         return view('news')->with('allNews', $allNews);
@@ -84,8 +90,10 @@ class Connexion extends Controller
         return view('new')->with('new', $new);
     }
     public function showHome(){
-        $this->checkIsConnected();
-        return view('home')->with('connected', true);
+        if (session('user') == null){
+            return redirect('');
+        }
+        return view('home');
     }
     public function showArtists(){
         return view('artists')->with('connected', true);
@@ -112,24 +120,56 @@ class Connexion extends Controller
         return view('search')->with('connected', true);
     }
     public function showDashboard(){
-        return view('dashboard')->with('connected', true);
+        if (session('user') == null){
+            return redirect('');
+        }
+
+        $userStripeCustomer = DB::table('subscriptions')->where('user_id', session('user')->id)->first();
+        if ($userStripeCustomer){
+            $urlSubrscribe = User::find(session('user')->id)->billingPortalUrl(route('profile'));
+        }
+        else{
+            $urlSubrscribe = false;
+        }
+        return view('dashboard')->with('urlSubrscribe', $urlSubrscribe);
     }
     public function showUpgrade(){
         return view('upgrade');
     }
     public function showProfile(){
-        $this->checkIsConnected();
-        return view('profile');
+        if (session('user') == null){
+            return redirect('');
+        }
+        $userStripeCustomer = DB::table('subscriptions')->where('user_id', session('user')->id)->first();
+        if ($userStripeCustomer){
+            $urlSubrscribe = User::find(session('user')->id)->billingPortalUrl(route('profile'));
+        }
+        else{
+            $urlSubrscribe = false;
+        }
+        return view('profile')->with('urlSubrscribe', $urlSubrscribe);
     }
     public function modifyProfile(Request $request){
-        $this->checkIsConnected();
+        if (session('user') == null){
+            return redirect('');
+        }
         $request->validate([
             'email' => 'required',
             'name' => 'required',
         ]);
 
+        $user = DB::table('users')->where('id', session('user')->id)->first();
+        $emailExist = DB::table('users')->where('email', $request->email)->first();
+        if($emailExist){
+            if ($user->email != $emailExist->email){
+                return redirect('profile');
+            }
+        }
+
+
+
         if($request->password == null || $request->confirmPassword == null){
-            DB::table('users')->update([
+            DB::table('users')->where('id', session('user')->id)->update([
                 'email' => $request->email,
                 'name' => $request->name,
             ]);
@@ -138,64 +178,89 @@ class Connexion extends Controller
         }
         else{
             if ($request->password==$request->confirmPassword){
-                DB::table('users')->update([
+                DB::table('users')->where('id', session('user')->id)->update([
                     'email' => $request->email,
                     'name' => $request->name,
                     'password' => Hash::make($request->password),
                 ]);
-                $newUser = DB::table('users')->where('email',$request->email)->first();
+                $newUser = DB::table('users')->where('id', session('user')->id)->first();
                 session(['user'=> $newUser]);
             }
             else{
-                return view('profile');
+                return redirect('profile');
             }
         }
         return view('profile');
     }
     public function showUsers(){
-        $this->checkIsConnected();
-        $this->checkIsAdmin();
+        if (session('user') == null){
+            return redirect('');
+        }
+        if (session('user')->is_admin == 0){
+            return redirect('home');
+        };
         $allUsers = DB::table('users')->get();
         return view('users')->with('allUsers', $allUsers);
     }
     public function addAdminUser(Request $request){
-        $this->checkIsConnected();
-        $this->checkIsAdmin();
+        if (session('user') == null){
+            return redirect('');
+        }
+        if (session('user')->is_admin == 0){
+            return redirect('home');
+        };
         $request->validate([
             'name' => 'required',
             'password' => 'required',
-            'email' => 'required|unique:users'
+            'email' => 'required|unique:users',
+            'is_admin' => 'required'
         ]);
         $password = Hash::make($request->password);
         DB::table('users')->insert([
             'name' => $request->name,
             'password' => $password,
-            'email' => $request->email
+            'email' => $request->email,
+            'is_admin' => $request->is_admin
         ]);
 
         return redirect('users');
     }
     public function modifyAdminUser(Request $request, $id){
-        $this->checkIsConnected();
-        $this->checkIsAdmin();
+        if (session('user') == null){
+            return redirect('');
+        }
+        if (session('user')->is_admin == 0){
+            return redirect('home');
+        };
         $request->validate([
             'email' => 'required',
             'name' => 'required',
+            'is_admin' => 'required'
         ]);
 
+        $user = DB::table('users')->where('id', $id)->first();
+        $emailExist = DB::table('users')->where('email', $request->email)->first();
+        if($emailExist){
+            if ($user->email != $emailExist->email){
+                return redirect('formuser/'.$id);
+            }
+        }
+
         if($request->password == null || $request->confirmPassword == null){
-            DB::table('users')->update([
+            DB::table('users')->where('id',$id)->update([
                 'email' => $request->email,
                 'name' => $request->name,
+                'is_admin' => $request->is_admin
             ]);
             DB::table('users')->where('id',$id)->first();
         }
         else{
             if ($request->password==$request->confirmPassword){
-                DB::table('users')->update([
+                DB::table('users')->where('id',$id)->update([
                     'email' => $request->email,
                     'name' => $request->name,
                     'password' => Hash::make($request->password),
+                    'is_admin' => $request->is_admin
                 ]);
                 DB::table('users')->where('id',$id)->first();
             }
@@ -215,8 +280,12 @@ class Connexion extends Controller
         return view('formuser')->with('user', $user);
     }
     public function deleteUser($id){
-        $this->checkIsConnected();
-        $this->checkIsAdmin();
+        if (session('user') == null){
+            return redirect('');
+        }
+        if (session('user')->is_admin == 0){
+            return redirect('home');
+        };
 
         $delete = DB::table('users')->where('id', $id)->delete();
         return redirect('users');
@@ -234,8 +303,12 @@ class Connexion extends Controller
         return view('formalbum')->with('connected', true);
     }
     public function showAdminNews(){
-        $this->checkIsConnected();
-        $this->checkIsAdmin();
+        if (session('user') == null){
+            return redirect('');
+        }
+        if (session('user')->is_admin == 0){
+            return redirect('home');
+        };
 
         $allNews = DB::table('news')->get();
 
@@ -249,8 +322,12 @@ class Connexion extends Controller
         return view('formnews')->with('new', $new);
     }
     public function addNew(Request $request){
-        $this->checkIsConnected();
-        $this->checkIsAdmin();
+        if (session('user') == null){
+            return redirect('');
+        }
+        if (session('user')->is_admin == 0){
+            return redirect('home');
+        };
 
         $request->validate([
             'title' => 'required',
@@ -258,20 +335,36 @@ class Connexion extends Controller
             'text_description' => 'required',
             'full_text' => 'required',
             'publish' => 'required',
+            'main_photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        DB::table('news')->insert([
-            'title' => $request->title,
-            'date' => $request->date,
-            'text_description' => $request->text_description,
-            'full_text' => $request->full_text,
-            'publish' => $request->publish,
-        ]);
+        $countNews = DB::table('news')->latest('id')->first();
+
+
+        if ($request->hasFile('main_photo')){
+            $result = $request->main_photo->storeOnCloudinaryAs('youzik', $countNews->id+1);
+        }
+        if ($result){
+            DB::table('news')->insert([
+                'title' => $request->title,
+                'date' => $request->date,
+                'text_description' => $request->text_description,
+                'full_text' => $request->full_text,
+                'publish' => $request->publish,
+                'autor' => session('user')->name,
+                'url' => $result->getSecurePath(),
+            ]);
+        }
+
         return redirect('adminnews');
     }
     public function deleteNew($id){
-        $this->checkIsConnected();
-        $this->checkIsAdmin();
+        if (session('user') == null){
+            return redirect('');
+        }
+        if (session('user')->is_admin == 0){
+            return redirect('home');
+        };
 
         DB::table('news')->where('id',$id)->delete();
         return redirect('adminnews');
@@ -283,24 +376,79 @@ class Connexion extends Controller
         return view('formmusic')->with('connected', true);
     }
     public function showSubscribe(){
+        if (session('user') == null){
+            return redirect('');
+        }
+        if (session('user')->subscribeNow == true){
+            return redirect('profile');
+        }
+
         return view('subscribe')->with('connected', true);
     }
     public function showPlans(){
+        if (session('user') == null){
+            return redirect('');
+        }
+        if (session('user')->subscribeNow == true){
+            return redirect('profile');
+        }
+
         return view('plans')->with('connected', true);
     }
-    public function showInformations(){
-        return view('informations')->with('connected', true);
+    public function showInformations($id){
+        if (session('user') == null){
+            return redirect('');
+        }
+        if (session('user')->subscribeNow == true){
+            return redirect('profile');
+        }
+
+        return view('informations')->with('connected', true)->with('id', $id);
     }
-    public function showCGU(){
+    public function showCGU($id){
+        if (session('user') == null){
+            return redirect('');
+        }
+        if (session('user')->subscribeNow == true){
+            return redirect('profile');
+        }
+
+        if ($id == 'price_1J2H1vGsegk9YRQoKXhtXvqW' || $id == 'price_1J2H2ZGsegk9YRQooblJfbxa'){
+            if ($id == 'price_1J2H1vGsegk9YRQoKXhtXvqW'){
+                $plan = [
+                    'id' => 'price_1J2H1vGsegk9YRQoKXhtXvqW',
+                    'name'=> 'personnel',
+                    'price'=> '4,99',
+                ];
+            }
+            else{
+                $plan = [
+                    'id' => 'price_1J2H2ZGsegk9YRQooblJfbxa',
+                    'name'=> 'famille',
+                    'price'=> '9,99',
+                ];
+
+            }
+        }
+        else{
+           return redirect('profile');
+        }
+
         $user = User::find(session('user')->id);
         $intent = $user->createSetupIntent();
-        return view('cgu')->with('intent', $intent);
+        return view('cgu')->with('intent', $intent)->with('plan', $plan);
     }
     public function checkoutPayement(Request $request){
+        if (session('user') == null){
+            return redirect('');
+        }
+        if (session('user')->subscribeNow == true){
+            return redirect('profile');
+        }
         $user = User::find(session('user')->id);
         try {
             $subscription = $user
-                ->newSubscription('default', 'price_1J2H1vGsegk9YRQoKXhtXvqW')
+                ->newSubscription('default', $request->id)
                 ->withCoupon($request->coupon)
                 ->create($request->payment_method);
         } catch (IncompletePayment $e) {
@@ -308,8 +456,12 @@ class Connexion extends Controller
                 $e->payment->id, 'redirect' => route('payments.error')
             ]);
         }
+        $userExist = DB::table('users')->where('id', session('user')->id)->first();
+        $user = User::find(session('user')->id);
+        $userExist->subscribeNow = $user->subscribed('default');
+        session(['user' => $userExist]);
 
-        return view('home');
+        return redirect('profile')->with('showModal', true);
     }
     public function showLiked(){
         return view('liked')->with('connected', true);

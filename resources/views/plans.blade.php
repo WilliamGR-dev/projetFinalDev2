@@ -132,8 +132,8 @@
                 </tr>
                 <tr>
                     <td class="text-white"></td>
-                    <td class="bg-info"><a class="btn btn-light w-75 rounded-pill" href="{{ url('informations') }}">ACHETER<br>MAINENANT</a></td>
-                    <td class="bg-pink"><a class="btn btn-light w-75 rounded-pill" href="{{ url('informations') }}">ACHETER<br>MAINENANT</a></td>
+                    <td class="bg-info"><a class="btn btn-light w-75 rounded-pill" href="{{ url('informations/price_1J2H1vGsegk9YRQoKXhtXvqW') }}">ACHETER<br>MAINENANT</a></td>
+                    <td class="bg-pink"><a class="btn btn-light w-75 rounded-pill" href="{{ url('informations/price_1J2H2ZGsegk9YRQooblJfbxa') }}">ACHETER<br>MAINENANT</a></td>
                 </tr>
 
             </table>

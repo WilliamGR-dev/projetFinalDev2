@@ -192,6 +192,11 @@ body{
 .changeUrl{
     display: none !important;
 }
+.bg-connexion{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 @media (max-width: 992px) {
     body{
         overflow-x: hidden;
@@ -216,9 +221,16 @@ body{
         padding-left: 25px;
         padding-right: 50px
     }
+    .bg-connexion{
+        width: 100%;
+        height: 100%;
+    }
 }
 .display-flex{
     display: flex;
+}
+.editor-toolbar a {
+    color: white !important;
 }
 @media (max-width: 990px) {
     .w-30{

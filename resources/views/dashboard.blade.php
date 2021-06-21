@@ -34,7 +34,7 @@
                                 </a>
                             </div>
                             <div style="width: 250px;margin-left: 15px;margin-right: 15px">
-                                <a href="{{ url('subscribe') }}" class="w-100 d-flex flex-column align-items-center justify-content-center p-5 text-white text-decoration-none" style="background-color: black;border-radius: 15px;">
+                                <a href="@if(session('user')->subscribeNow != true) {{ url('upgrade') }} @else {{ $urlSubrscribe }} @endif" class="w-100 d-flex flex-column align-items-center justify-content-center p-5 text-white text-decoration-none" style="background-color: black;border-radius: 15px;">
                                     <div style="padding: 10px">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="67.302" height="80.668" viewBox="0 0 67.302 80.668">
                                             <g id="user" transform="translate(0 0)">

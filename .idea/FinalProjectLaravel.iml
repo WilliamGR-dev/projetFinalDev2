@@ -122,9 +122,15 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/sabberworm/php-css-parser" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-intl-icu" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/cashier" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/sanctum" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/teapot/status-code" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/cloudinary-labs/cloudinary-laravel" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/cloudinary/cloudinary_php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/shrikeh/teapot" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="bootstrap-icons" level="application" />
   </component>
 </module>

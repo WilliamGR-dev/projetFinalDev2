@@ -27,6 +27,7 @@
                         <td>Description</td>
                         <td>Date de creation</td>
                         <td>Publier</td>
+                        <td>Auteur</td>
                         <td>Actions</td>
                     </tr>
                     </thead>
@@ -37,6 +38,7 @@
                             <td>{{ $news->text_description }}</td>
                             <td>{{ $news->date }}</td>
                             <td>@if($news->publish == 1) Publier @else Non Publier @endif</td>
+                            <td>{{ $news->autor }}</td>
                             <td>
                                 <div class="d-flex flex-row">
                                     <div style="margin: 0 10px"><a href="{{ url('modifynews/'.$news->id) }}">Modifier</a></div>

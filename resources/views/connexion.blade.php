@@ -35,7 +35,7 @@
                 </form>
             </div>
         </div>
-        <img class="vw-100" src="./img/connexionPage.png">
+        <img class="bg-connexion" style="object-fit: cover;" src="./img/connexionPage.png">
     </section>
     </body>
 <script src="./js/connexion.js"></script>

@@ -46,7 +46,7 @@
                         </div>
                         <div class="d-flex justify-content-end" style="width: 83%">
                             <button class="btn btn-light rounded-pill w-25 mt-4 p-3" style="margin-right: 10px">Annuler</button>
-                            <a href="{{ url('cgu') }}" class="btn btn-light rounded-pill w-25 mt-4 p-3" style="margin-left: 10px">Enregistrer</a>
+                            <a href="{{ url('cgu/'.$id) }}" class="btn btn-light rounded-pill w-25 mt-4 p-3" style="margin-left: 10px">Enregistrer</a>
                         </div>
                     </form>
                 </div>

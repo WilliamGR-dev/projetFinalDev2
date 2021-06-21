@@ -36,6 +36,14 @@
                             <label>confirm password</label>
                             <input class="form-control" name="confirmpassword">
                         </div>
+
+                        <div style="margin-bottom: 20px">
+                            <label>Admin</label>
+                            <select name="is_admin">
+                                <option value="1" @if($user->is_admin == 1) selected @endif>Oui</option>
+                                <option value="0" @if($user->is_admin == 0) selected @endif>Non</option>
+                            </select>
+                        </div>
                         <button class="btn btn-light rounded-pill" style="margin-right: 10px">Annuler</button>
                         <button class="btn btn-light rounded-pill" style="margin-left: 10px">Enregistrer</button>
                     </form>
@@ -57,6 +65,13 @@
                         <div style="margin-bottom: 20px">
                             <label>confirm password</label>
                             <input type="password" class="form-control" name="confirmpassword">
+                        </div>
+                        <div style="margin-bottom: 20px">
+                            <label>Admin</label>
+                            <select name="is_admin">
+                                <option value="1">Oui</option>
+                                <option value="0">Non</option>
+                            </select>
                         </div>
                         <button class="btn btn-light rounded-pill" style="margin-right: 10px">Annuler</button>
                         <button class="btn btn-light rounded-pill" style="margin-left: 10px">Enregistrer</button>

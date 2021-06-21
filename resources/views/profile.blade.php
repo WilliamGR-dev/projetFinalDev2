@@ -22,12 +22,15 @@
                                 <div class="bg-info" style="width: 150px;height: 150px"></div>
                                 <div class="text-white" style="margin-left: 50px"><h1>{{ session('user')->name }}</h1></div>
                             </div>
+                            @if(session('user')->subscribeNow != true)
                             <div class="w-100 p-4 d-flex justify-content-end" style="background-color: #34465F;width: 100%;margin-top: -100px">
-                                <a href="{{ url('subscribe') }}" class="btn btn-light rounded-pill text-decoration-none text-dark">Abonnement</a>
+                                <a href="{{ url('upgrade') }}" class="btn btn-light rounded-pill text-decoration-none text-dark">Abonnement</a>
                             </div>
+                            @else
                             <div class="w-100 p-4 d-flex justify-content-end" style="background-color: #34465F;width: 100%;margin-top: -100px">
-                                <a href="{{ \App\Models\User::find(session('user')->id)->billingPortalUrl(route('account') }}" class="btn btn-light rounded-pill text-decoration-none text-dark">Gerer Abonnement</a>
+                                <a href="{{ $urlSubrscribe }}" class="btn btn-light rounded-pill text-decoration-none text-dark">Gerer Abonnement</a>
                             </div>
+                            @endif
                         </div>
                         <form class="d-flex flex-wrap w-100" method="post" action="{{url('profile')}}">
                             @csrf
@@ -56,5 +59,45 @@
         @include('navmenu')
         @include('player')
     </section>
+
+    @if(isset($showModal))
+    <div class="position-absolute vh-100 vw-100" style="display: block;background-color: rgba(0,0,0,0.5)" onclick="closeModal()" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content text-dark">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="exampleModalLongTitle">Payement Effectué</h1>
+                    <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Votre abonnement est desormais actif
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function openModal() {
+            document.getElementById("exampleModalCenter").style.display = "block"
+            document.getElementById("exampleModalCenter").classList.add("show")
+        }
+        function closeModal() {
+            document.getElementById("exampleModalCenter").style.display = "none"
+            document.getElementById("exampleModalCenter").classList.remove("show")
+        }
+        // Get the modal
+        var modal = document.getElementById('exampleModalCenter');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal()
+            }
+        }
+    </script>
+    @endif
     </body>
 </html>

@@ -14,7 +14,7 @@
             <h1 class="slogan text-white">Actualités</h1>
             <div class="w-100 d-flex align-items-center flex-column">
                 <div class="w-75 d-flex flex-row justify-content-between mt-5 mb-5 flex-lg-row flex-md-column flex-sm-column" style="background-color: rgba(112,112,112,0.10)">
-                    <img class="w-30" src="https://picsum.photos/1000/1000">
+                    <img class="w-30" src="@if($new->url != null){{ $new->url }} @else https://picsum.photos/1000/1000 @endif">
                     <div class="p-3 w-100 d-flex flex-column justify-content-around">
                         <div class="d-flex w-100 justify-content-between mb-4">
                             <h1 class="text-white">{{ $new->title }}</h1>

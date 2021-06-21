@@ -20,6 +20,8 @@ class CreateYouzikTable extends Migration
             $table->string('text_description');
             $table->string('full_text');
             $table->boolean('publish');
+            $table->string('autor');
+            $table->string('url')->nullable();
             $table->timestamps();
         });
 
@@ -28,7 +30,7 @@ class CreateYouzikTable extends Migration
             $table->string('title');
             $table->date('date');
             $table->string('text_description');
-            $table->int('artist_id');
+            $table->integer('artist_id');
             $table->boolean('publish');
             $table->timestamps();
         });
@@ -41,7 +43,7 @@ class CreateYouzikTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
         Schema::dropIfExists('news');
+        Schema::dropIfExists('albums');
     }
 }

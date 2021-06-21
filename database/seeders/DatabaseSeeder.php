@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
                 'text_description' => $faker->text('20'),
                 'full_text' => $faker->text('200'),
                 'publish' => $faker->boolean,
+                'autor' => 'Serveur',
             ]);
     }
 

@@ -15,7 +15,7 @@
             <div class="w-25 d-flex flex-column p-5 pt-1">
                 <div class="mb-4 w-100">
                     <h3 class="mb-5">User Location</h3>
-                    <img class="w-100" src="./img/location.png">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.356464221067!2d2.3608514156748086!3d48.87048077928862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e0950555883%3A0x25e6ea66d950d9ec!2s19%20Rue%20Yves%20Toudic%2C%2075010%20Paris!5e0!3m2!1sfr!2sfr!4v1623764727299!5m2!1sfr!2sfr" class="w-100" allowfullscreen="" loading="lazy"></iframe>
                 </div>
                 <div class="mt-4 w-100">
                     <h3 class="mb-4">Youzik Information</h3>
