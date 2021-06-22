@@ -17,4 +17,5 @@ use App\Http\Controllers\apiController;
 Route::post('auth/register', [apiController::class , 'register']);
 Route::post('auth/login', [apiController::class , 'login']);
 Route::get('news', [apiController::class , 'showNews']);
+Route::post('modify', [apiController::class , 'modifyProfile']);
 Route::post('contact', [apiController::class , 'sendMail']);

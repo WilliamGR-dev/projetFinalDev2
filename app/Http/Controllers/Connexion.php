@@ -225,6 +225,18 @@ class Connexion extends Controller
 
         return redirect('users');
     }
+    public function searchNews(Request $request){
+        $request->validate([
+            'search_input' => 'required',
+        ]);
+
+        $searchNews = DB::table('news')->where('title', 'LIKE', "%{$request->search_input}%")->orWhere('full_text', 'LIKE', "%{$request->search_input}%")->paginate(2);
+
+        if ($searchNews->total() == 0){
+            $searchNews = false;
+        }
+        return view('searchnews')->with('searchNews', $searchNews);
+    }
     public function modifyAdminUser(Request $request, $id){
         if (session('user') == null){
             return redirect('');

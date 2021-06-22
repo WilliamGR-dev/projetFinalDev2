@@ -144,10 +144,11 @@
                 </ul>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center" style="width: 100%;justify-content: flex-end;">
                     <li>
-                        <div class="searchbar">
-                            <input class="search_input" type="text" name="" placeholder="Search...">
-                            <a href="#" class="search_icon"><i class="bi bi-search"></i></a>
-                        </div>
+                        <form class="searchbar" method="post" action="{{ url('/searchnews') }}">
+                            @csrf
+                            <input class="search_input" type="text" name="search_input" placeholder="Search..." required>
+                            <button class="search_icon" style="background: none;border: none "><i class="bi bi-search"></i></button>
+                        </form>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active fw-bold" aria-current="page" href="{{ url('connexion') }}">Connexion / Inscription</a>

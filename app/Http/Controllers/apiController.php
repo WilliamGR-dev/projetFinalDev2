@@ -39,6 +39,53 @@ class apiController extends Controller
 
     }
 
+    public function modifyProfile(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'email' => 'required',
+            'name' => 'required',
+        ]);
+
+        $user = DB::table('users')->where('id', $request->id)->first();
+        $emailExist = DB::table('users')->where('email', $request->email)->first();
+        if($emailExist){
+            if ($user->email != $emailExist->email){
+                return response()->json([
+                    'error' => 'Email deja utilisé'
+                ]);
+            }
+        }
+
+        if($request->password == null || $request->confirmPassword == null){
+            DB::table('users')->where('id', $request->id)->update([
+                'email' => $request->email,
+                'name' => $request->name,
+            ]);
+            $newUser = DB::table('users')->where('email',$request->email)->first();
+        }
+        else{
+            if ($request->password==$request->confirmPassword){
+                DB::table('users')->where('id', $request->id)->update([
+                    'email' => $request->email,
+                    'name' => $request->name,
+                    'password' => Hash::make($request->password),
+                ]);
+                $newUser = DB::table('users')->where('id', $request->id)->first();
+            }
+            else{
+                return response()->json([
+                    'error' => 'les mdp ne correspondent pas'
+                ]);
+            }
+        }
+        return response()->json([
+            'success' => 'Modifier',
+            'user' => $newUser
+        ]);
+
+    }
+
     public function login(Request $request){
         $request->validate([
             'email' => 'required|email',
@@ -73,7 +120,7 @@ class apiController extends Controller
         ]);
     }
 
-    function sendMail(Request $request){
+    public function sendMail(Request $request){
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\Connexion@showWelcome');
 Route::get('/connexion', 'App\Http\Controllers\Connexion@showConnexion');
+Route::post('/searchnews', 'App\Http\Controllers\Connexion@searchNews');
 Route::get('/services', 'App\Http\Controllers\Connexion@showServices');
 Route::get('/news', 'App\Http\Controllers\Connexion@showNews');
 Route::get('/contact', 'App\Http\Controllers\Connexion@showContact');
