@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Testing\Fluent\Concerns\Has;
 use Laravel\Cashier\Cashier;
 
@@ -16,7 +18,7 @@ class Connexion extends Controller
         if (session()->has('user')){
             return redirect('home');
         };
-        $news = DB::table('news')->where('publish',1)->inRandomOrder()->limit(5)->get();
+        $news = DB::table('news')->where('publish',1)->latest('id')->limit(5)->get();
         return view('welcome')->with('news',$news);
     }
     public function showConnexion(){
@@ -78,7 +80,7 @@ class Connexion extends Controller
         if (session()->has('user')){
             return redirect('home');
         };
-        $allNews = DB::table('news')->where('publish', 1)->paginate(2);
+        $allNews = DB::table('news')->orderBy('id', 'desc')->where('date', '<=', Carbon::today())->where('publish', 1)->paginate(2);
 
         return view('news')->with('allNews', $allNews);
     }
@@ -326,6 +328,22 @@ class Connexion extends Controller
 
         return view('adminnews')->with('allNews', $allNews);
     }
+    public function showAdminSubscribes(){
+        if (session('user') == null){
+            return redirect('');
+        }
+        if (session('user')->is_admin == 0){
+            return redirect('home');
+        };
+
+        $users = DB::table('users')->get();
+        $allSubscribes = DB::table('subscriptions')->get();
+        $allUsers = [];
+        foreach ($users as $user){
+            $allUsers[$user->id] = $user;
+        }
+        return view('adminsubscribes')->with('allSubscribes', $allSubscribes)->with('allUsers',$allUsers);
+    }
     public function showFormNew(){
         return view('formnews')->with('connected', true);
     }
@@ -472,8 +490,49 @@ class Connexion extends Controller
         $user = User::find(session('user')->id);
         $userExist->subscribeNow = $user->subscribed('default');
         session(['user' => $userExist]);
+        if ($request->coupon=='WEBSTART10'){
+            if ($request->id == 'price_1J2H2ZGsegk9YRQooblJfbxa'){
+                $price = '8,99 €';
+            }
+            if ($request->id == 'price_1J2H1vGsegk9YRQoKXhtXvqW'){
+                $price = '4,49 €';
+            }
+        }
+        else{
 
-        return redirect('profile')->with('showModal', true);
+            if ($request->id == 'price_1J2H2ZGsegk9YRQooblJfbxa'){
+                $price = '9,99 €';
+            }
+            if ($request->id == 'price_1J2H1vGsegk9YRQoKXhtXvqW'){
+                $price = '4,99 €';
+            }
+        }
+        $userStripeCustomer = DB::table('subscriptions')->where('user_id', session('user')->id)->first();
+        if ($userStripeCustomer){
+            $urlSubrscribe = User::find(session('user')->id)->billingPortalUrl(route('profile'));
+        }
+        else{
+            $urlSubrscribe = false;
+        }
+        $information = [
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+            'email' => $user->email,
+        ];
+        $informationUser = [
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+            'email' => $user->email,
+            'start' => Carbon::today(),
+            'last' => Carbon::today()->addMonth(),
+            'prix' => $price,
+        ];
+
+        Mail::to(request('email'))->send(new \App\Mail\subscriptionAdmin($information));
+        Mail::to(request('email'))->send(new \App\Mail\subscriptionUser($informationUser));
+
+
+        return view('profile')->with('urlSubrscribe', $urlSubrscribe)->with('showModal', true)->with('lastFour', $user->pm_last_four)->with('start', Carbon::today())->with('last', Carbon::today()->addMonth())->with('price', $price);
     }
     public function showLiked(){
         return view('liked')->with('connected', true);

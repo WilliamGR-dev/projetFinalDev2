@@ -71,7 +71,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Votre abonnement est desormais actif
+                    <h1>Votre abonnement est desormais actif</h1>
+                    <h4>Montant de l’abonnement: {{ $price }}</h4>
+                    <h4>Date de l’abonnement : {{ $start }}</h4>
+                    <h4>4 derniers chiffres de la carte bancaire utilisée : {{ $lastFour }}</h4>
+                    <h4>Date du renouvellement : {{ $last }}</h4>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

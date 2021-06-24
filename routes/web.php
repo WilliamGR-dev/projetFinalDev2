@@ -54,6 +54,7 @@ Route::get('/formnew', 'App\Http\Controllers\Connexion@showFormNew');
 Route::get('/modifynews/{id}', 'App\Http\Controllers\Connexion@showFormNewId');
 Route::post('/addnew', 'App\Http\Controllers\Connexion@addNew');
 Route::get('/deletenews/{id}', 'App\Http\Controllers\Connexion@deleteNew');
+Route::get('/adminsubscribes', 'App\Http\Controllers\Connexion@showAdminSubscribes');
 Route::get('/adminmusic', 'App\Http\Controllers\Connexion@showAdminMusic');
 Route::get('/formmusic', 'App\Http\Controllers\Connexion@showFormMusic');
 Route::get('/subscribe', 'App\Http\Controllers\Connexion@showSubscribe');

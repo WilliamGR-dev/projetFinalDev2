@@ -13,7 +13,7 @@
         <div class="firstPage justify-content-start" ><div class="position-absolute" style="padding-left: 250px">
                 <h1 class="fw-bold" style="color: #5006A3">ILLIMITÉ</h1>
                 <h1 class="sloganService text-white fw-bold mt-3 mb-3">Passer en Premium<br>Soyez heureux</h1>
-                <button class="btn btn-light rounded-pill text-white mt-4" style="background-color: #5006A3;border-color: #5006A3">OBTENEZ LE PREMIUM</button>
+                <a class="btn btn-light rounded-pill text-white mt-4" href="{{ url('connexion') }}" style="background-color: #5006A3;border-color: #5006A3">OBTENEZ LE PREMIUM</a>
             </div>
 
             <img class="h-100 vw-100" src="./img/servicePage.png">
@@ -141,8 +141,8 @@
                 </tr>
                 <tr>
                     <td class="text-white"></td>
-                    <td class="bg-info"><button class="btn btn-light w-75 rounded-pill">ACHETER<br>MAINENANT</button></td>
-                    <td class="bg-pink"><button class="btn btn-light w-75 rounded-pill">ACHETER<br>MAINENANT</button></td>
+                    <td class="bg-info"><a href="{{ url('connexion') }}" class="btn btn-light w-75 rounded-pill">ACHETER<br>MAINENANT</a></td>
+                    <td class="bg-pink"><a href="{{ url('connexion') }}" class="btn btn-light w-75 rounded-pill">ACHETER<br>MAINENANT</a></td>
                 </tr>
 
             </table>

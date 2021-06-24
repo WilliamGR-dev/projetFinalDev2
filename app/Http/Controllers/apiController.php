@@ -98,6 +98,8 @@ class apiController extends Controller
             return response()->json(['error'=>'The provided credentials are incorrect.'], 401);
         }
 
+        $isSubscribe = $user->subscribed('default');
+
         $user->tokens()->where('tokenable_id', $user->id)->delete();
 
         $token = $user->createToken( $request->email)->plainTextToken;
@@ -109,11 +111,28 @@ class apiController extends Controller
             'name' => $user->name,
             'created_at' => $user->created_at,
             'is_admin' => $user->is_admin,
+            'is_subscribe' => $isSubscribe,
         ]);
     }
 
     public function showNews(){
         $allNews = DB::table('news')->where('publish', 1)->paginate(2);
+
+        return response()->json([
+            'allNews' => $allNews,
+        ]);
+    }
+
+    public function showNew($id){
+        $new = DB::table('news')->where('id', $id)->first();
+
+        return response()->json([
+            'new' => $new,
+        ]);
+    }
+
+    public function showAllNews(){
+        $allNews = DB::table('news')->where('publish', 1)->get();
 
         return response()->json([
             'allNews' => $allNews,
@@ -140,6 +159,53 @@ class apiController extends Controller
         Mail::to(request('email'))->send(new \App\Mail\contact($information));
         return response()->json([
             'success' => 'mail Send',
+        ]);
+    }
+
+    public function intent(Request $request)
+    {
+        $user = User::find($request->id);
+
+        return response()->json($user->createSetupIntent());
+    }
+
+    public function subscribe(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'name' => 'required',
+            'payment_method' => 'required',
+            'plan' => 'required',
+            'coupon' => 'nullable'
+        ]);
+
+        $user = User::find($request->id);
+
+        try {
+            $subscription = $user
+                ->newSubscription('default', $request->plan)
+                ->withCoupon($request->coupon)
+                ->create($request->payment_method);
+
+            $isSubscribe = $user->subscribed('default');
+            return response()->json($isSubscribe);
+        } catch (\Laravel\Cashier\Exceptions\IncompletePayment $e) {
+            return response()->json($e->payment);
+        }
+    }
+
+    public function profileUrl(Request $request){
+
+        $userStripeCustomer = DB::table('subscriptions')->where('user_id', $request->id)->first();
+        if ($userStripeCustomer){
+            $urlSubrscribe = User::find($request->id)->billingPortalUrl(route('profile'));
+        }
+        else{
+            $urlSubrscribe = false;
+        }
+
+        return response()->json([
+            'url' => $urlSubrscribe,
         ]);
     }
 }
