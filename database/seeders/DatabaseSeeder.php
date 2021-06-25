@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Faker\Factory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $faker = \Faker\Factory::create();
+        $faker = Factory::create();
 
         for ($i = 0; $i < 10; $i++) {
             DB::table('news')->insert([
