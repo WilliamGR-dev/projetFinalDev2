@@ -1,13 +1,13 @@
 @component('mail::message')
-    # Un client c'est abonné
+# Un client c'est abonné
 
-    ## Prenom
+## Prenom
 
-    {{ $information['name'] }}
+{{ $information['name'] }}
 
-    ## email
+## email
 
-    {{ $information['email'] }}
+{{ $information['email'] }}
 
 
 @endcomponent

@@ -1,24 +1,24 @@
 @component('mail::message')
-    # Contact
+# Contact
 
-    ## Prenom
+## Prenom
 
-    {{ $information['first_name'] }}
+{{ $information['first_name'] }}
 
-    ## Nom
+## Nom
 
-    {{ $information['last_name'] }}
+{{ $information['last_name'] }}
 
-    ## email
+## email
 
-    {{ $information['email'] }}
+{{ $information['email'] }}
 
-    ## object
+## object
 
-    {{ $information['object'] }}
+{{ $information['object'] }}
 
-    ## message
+## message
 
-    {{ $information['message'] }}
+{{ $information['message'] }}
 
 @endcomponent

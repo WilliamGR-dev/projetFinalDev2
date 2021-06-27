@@ -766,6 +766,9 @@ class Connexion extends Controller
             return redirect('profile');
         }
         $user = User::find(session('user')->id);
+        if ($request->coupon != 'WEBSTART10'){
+            $request->coupon = null;
+        }
         try {
             $subscription = $user
                 ->newSubscription('default', $request->id)
