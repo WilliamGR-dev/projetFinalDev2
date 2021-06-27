@@ -122,6 +122,7 @@
       <path value="$PROJECT_DIR$/vendor/shrikeh/teapot" />
       <path value="$PROJECT_DIR$/vendor/laravel/scout" />
       <path value="$PROJECT_DIR$/vendor/wapmorgan/mp3info" />
+      <path value="$PROJECT_DIR$/vendor/laravel-lang/lang" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3">

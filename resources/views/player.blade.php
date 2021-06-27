@@ -40,7 +40,7 @@
                 <rect id="Rectangle_Copy" data-name="Rectangle Copy" width="3" height="17" rx="1.5" transform="translate(22.661 11.661)" fill="#d8d8d8"/>
             </svg>
         </a>
-        <a id="replaybtn" onclick="play()" style="display: block;">
+        <a id="replaybtn" onclick="replay()" style="display: block;">
             <svg id="play-circle" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
                 <path id="Tracé_1" data-name="Tracé 1" d="M20,37.5A17.5,17.5,0,1,1,37.5,20,17.5,17.5,0,0,1,20,37.5ZM20,40A20,20,0,1,0,0,20,20,20,0,0,0,20,40Z" fill="#a6a7a8"/>
                 <path id="Tracé_2" data-name="Tracé 2" d="M6.83,5.169a1.531,1.531,0,0,1,1.592.116l10.715,7.654a1.531,1.531,0,0,1,0,2.492L8.422,23.085A1.531,1.531,0,0,1,6,21.839V6.532a1.531,1.531,0,0,1,.83-1.362Z" transform="translate(7.111 5.815)" fill="#a6a7a8"/>
@@ -103,6 +103,7 @@
     }
     function play($url, $artist, $music){
         if(!isplayded){
+            sendMusic($url)
             audio = new Audio($url);
             audio.play();
             replaybtn.style.display = 'none';
@@ -113,10 +114,23 @@
         }
 
     }
+    function replay(){
+        audio.play()
+        pausebtn.style.display = 'block';
+        replaybtn.style.display = 'none';
+        isplayded = true;
+    }
     function pause(){
         audio.pause()
         pausebtn.style.display = 'none';
         replaybtn.style.display = 'block';
         isplayded = false;
+    }
+    function sendMusic($url){
+        const dataToSend = JSON.stringify({"url": $url, "id": {{ session('user')->id }}});
+        fetch("http://127.0.0.1:8000/api/sendmusic", {
+            method: "POST",
+            body: dataToSend
+        })
     }
 </script>

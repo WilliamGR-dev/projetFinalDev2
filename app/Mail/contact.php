@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use http\Env\Request;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -31,6 +32,6 @@ class contact extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contact');
+        return $this->from($this->information['email'])->markdown('emails.contact');
     }
 }

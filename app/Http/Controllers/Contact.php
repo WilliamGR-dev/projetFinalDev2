@@ -24,7 +24,7 @@ class Contact extends Controller
             'message' => $request->message,
         ];
 
-        Mail::to($request->email)->send(new \App\Mail\contact($information));
+        Mail::to('youzik@contact.com')->send(new \App\Mail\contact($information));
         return view('contact')->with('success', 'Mail Envoyé');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -206,6 +207,27 @@ class apiController extends Controller
 
         return response()->json([
             'url' => $urlSubrscribe,
+        ]);
+    }
+
+    public function sendMusic(){
+        $json = file_get_contents('php://input');
+        $form = json_decode($json);
+
+        $musicId = DB::table('musics')->where('url', $form->url)->first();
+        if ($musicId){
+            $musicExist = DB::table('recently_played')->where('music_id', $musicId->id)->where('user_id', $form->id)->first();
+            if ($musicExist){
+                DB::table('recently_played')->where('id', $musicId->id)->update([
+                    'updated_at' => Carbon::now()
+                ]);
+            }
+            else{
+                DB::table('recently_played')->insert(['user_id' => $form->id, 'music_id' => $musicId->id]);
+            }
+        }
+        return response()->json([
+            'message' => 'ajout effectué',
         ]);
     }
 }

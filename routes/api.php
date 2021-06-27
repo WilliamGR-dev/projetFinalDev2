@@ -24,3 +24,4 @@ Route::post('contact', [apiController::class , 'sendMail']);
 Route::post('stripe/intent', [apiController::class , 'intent']);
 Route::post('stripe/subscribe', [apiController::class , 'subscribe']);
 Route::post('profile/url', [apiController::class , 'profileUrl']);
+Route::post('sendmusic', [apiController::class , 'sendMusic']);

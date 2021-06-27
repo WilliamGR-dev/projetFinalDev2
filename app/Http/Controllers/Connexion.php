@@ -128,7 +128,23 @@ class Connexion extends Controller
         return view('playlist')->with('connected', true);
     }
     public function showRecentlyPlayed(){
-        return view('recentlyplayed')->with('connected', true);
+        $allRecentlyPlayed = DB::table('recently_played')->where('user_id', session('user')->id)->orderBy('updated_at', 'desc')->get();
+        $allMusic = DB::table('musics')->get();
+        $allAlbums = DB::table('albums')->get();
+        $allArtistes = DB::table('artists')->get();
+        $musics = [];
+        $albums = [];
+        $artistes = [];
+        foreach ($allMusic as $music){
+            $musics[$music->id] = $music;
+        }
+        foreach ($allAlbums as $album){
+            $albums[$album->id] = $album;
+        }
+        foreach ($allArtistes as $artist){
+            $artistes[$artist->id] = $artist;
+        }
+        return view('recentlyplayed')->with('musics', $musics)->with('albums', $albums)->with('artistes', $artistes)->with('allRecentlyPlayed', $allRecentlyPlayed);
     }
     public function showAlbums(){
         $allAlbums = DB::table('albums')->get();
@@ -789,13 +805,11 @@ class Connexion extends Controller
             $urlSubrscribe = false;
         }
         $information = [
-            'first_name' => $user->first_name,
-            'last_name' => $user->last_name,
+            'name' => $user->name,
             'email' => $user->email,
         ];
         $informationUser = [
-            'first_name' => $user->first_name,
-            'last_name' => $user->last_name,
+            'name' => $user->name,
             'email' => $user->email,
             'start' => Carbon::today(),
             'last' => Carbon::today()->addMonth(),

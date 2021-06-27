@@ -75,12 +75,13 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($allRecentlyPlayed as $played)
                                 <tr class="text-white">
-                                <td>Can I be him</td>
-                                <td>James Arthur</td>
-                                <td>Back from Past</td>
-                                <td>2019-01-15</td>
-                                <td>4:07</td>
+                                <td><a href="#" onclick="play('{{$musics[$played->music_id]->url}}','{{ $artistes[$musics[$played->music_id]->artist_id]->name }}','{{ $musics[$played->music_id]->title }}')">{{$musics[$played->music_id]->title}}</a></td>
+                                <td>{{ $artistes[$musics[$played->music_id]->artist_id]->name }}</td>
+                                <td>{{ $albums[$musics[$played->music_id]->album_id]->title }}</td>
+                                <td>{{$musics[$played->music_id]->date}}</td>
+                                <td>{{$musics[$played->music_id]->time}}</td>
                                 <td>
                                     <div class="d-flex">
                                         <div style="margin-left: 15px;margin-right: 15px">
@@ -92,6 +93,7 @@
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
