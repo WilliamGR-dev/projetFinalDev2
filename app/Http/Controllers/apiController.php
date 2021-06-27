@@ -198,7 +198,7 @@ class apiController extends Controller
 
         $userStripeCustomer = DB::table('subscriptions')->where('user_id', $request->id)->first();
         if ($userStripeCustomer){
-            $urlSubrscribe = User::find($request->id)->billingPortalUrl(route('profile'));
+            $urlSubrscribe = User::find($request->id)->billingPortalUrl('https://projectfinalionic.herokuapp.com/');
         }
         else{
             $urlSubrscribe = false;

@@ -19,8 +19,9 @@
                 @include('navbarprofile')
                 <hr>
                 <h3 class="text-white">News</h3>
+                @include('errors')
                 @if(isset($new))
-                    <form class="w-90" action="{{ url('addnew') }}" method="post" enctype="multipart/form-data">
+                    <form class="w-90" action="{{ url('/modifynews/'.$new->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div style="margin-bottom: 20px">
                             <label>Title</label>

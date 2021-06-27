@@ -11,7 +11,8 @@
     @include('navbar')
     <section style="height: 100vh" class="d-flex justify-content-center align-items-center">
         <div class="card card-connexion position-absolute bg-transparent border-0">
-            <div class="card-body" id="login">
+            @include('errors')
+            <div class="card-body" @if(isset($register)) style="display: none" @endif id="login">
                 <h5 class="card-title text-center title-connexion text-white">Connexion</h5>
                 <button type="button" class="form_select btn btn-primary button-select" name="login" onclick="showLogin()">Login</button>
                 <button type="button" class="form_select btn btn-primary button-unselect" name="register" onclick="showRegister()">Register</button>
@@ -22,7 +23,7 @@
                     <button class="btn btn-primary w-25 m-auto mt-3">Connexion</button>
                 </form>
             </div>
-            <div class="card-body" id="register" style="display: none">
+            <div class="card-body" @if(!isset($register)) style="display: none" @endif id="register">
                 <h5 class="card-title text-center title-connexion text-white">Inscription</h5>
                 <button class="form_select btn btn-primary button-unselect" name="login" onclick="showLogin()">Login</button>
                 <button class="form_select btn btn-primary button-select" name="register" onclick="showRegister()">Register</button>

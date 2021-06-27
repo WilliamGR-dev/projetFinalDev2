@@ -32,6 +32,8 @@
                             </div>
                             @endif
                         </div>
+
+                        @include('errors')
                         <form class="d-flex flex-wrap w-100" method="post" action="{{url('profile')}}">
                             @csrf
                             <div class="w-50 p-4 " style="padding: 0 100px 30px 0">

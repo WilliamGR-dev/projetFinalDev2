@@ -15,11 +15,11 @@
                 <div class="h-100">
                     <div class="d-flex">
                         <div class="" style="margin-right: 15px">
-                            <img src="./img/albums.png">
+                            <img src="{{ $artist->url }}">
                         </div>
                         <div class="" style="margin-left: 15px">
-                            <h1 class="text-white fw-light mb-2">Orelsan</h1>
-                            <h4 class="text- mt-2 mb-2">Rap conscient</h4>
+                            <h1 class="text-white fw-light mb-2">{{ $artist->name }}</h1>
+                            <h4 class="text- mt-2 mb-2">{{ $artist->description }}</h4>
                             <div class="mt-2 mb-2">
                                 <span>Orelsan (/ɔʁɛlˈsan/), de son vrai nom Aurélien Cotentin, né le 1er août 1982 à Alençon dans l'Orne, est un rappeur, compositeur, acteur, réalisateur, scénariste et doubleur <français class=""></français></span><br>
                                 <span>Créé par YOUZIK. 175 chansons. 10 heures 52 minutes</span>
@@ -80,397 +80,31 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="text-white">
-                                <td>Can I be him</td>
-                                <td>Back from Past</td>
-                                <td>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </td>
-                                <td>2019-01-15</td>
-                                <td>4:07</td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-arrow-down-circle"></i>
+                            @foreach($allMusic as $music)
+                                <tr class="text-white">
+                                    <td><a href="#" onclick="play('{{$music->url}}','{{ $artist->name }}', '{{ $music->title }}')">{{$music->title}}</a></td>
+                                    <td>{{$artist->name}}</td>
+                                    <td>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star"></i>
+                                    </td>
+                                    <td>{{$music->date}}</td>
+                                    <td>{{$music->time}}</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <div style="margin-left: 15px;margin-right: 15px">
+                                                <i class="bi bi-arrow-down-circle"></i>
+                                            </div>
+                                            <div style="margin-left: 15px;margin-right: 15px">
+                                                <i class="bi bi-heart"></i>
+                                            </div>
                                         </div>
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-heart"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="text-white">
-                                <td>Can I be him</td>
-                                <td>Back from Past</td>
-                                <td>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </td>
-                                <td>2019-01-15</td>
-                                <td>4:07</td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-arrow-down-circle"></i>
-                                        </div>
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-heart"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="text-white">
-                                <td>Can I be him</td>
-                                <td>Back from Past</td>
-                                <td>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </td>
-                                <td>2019-01-15</td>
-                                <td>4:07</td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-arrow-down-circle"></i>
-                                        </div>
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-heart"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="text-white">
-                                <td>Can I be him</td>
-                                <td>Back from Past</td>
-                                <td>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </td>
-                                <td>2019-01-15</td>
-                                <td>4:07</td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-arrow-down-circle"></i>
-                                        </div>
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-heart"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="text-white">
-                                <td>Can I be him</td>
-                                <td>Back from Past</td>
-                                <td>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </td>
-                                <td>2019-01-15</td>
-                                <td>4:07</td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-arrow-down-circle"></i>
-                                        </div>
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-heart"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="text-white">
-                                <td>Can I be him</td>
-                                <td>Back from Past</td>
-                                <td>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </td>
-                                <td>2019-01-15</td>
-                                <td>4:07</td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-arrow-down-circle"></i>
-                                        </div>
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-heart"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="text-white">
-                                <td>Can I be him</td>
-                                <td>Back from Past</td>
-                                <td>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </td>
-                                <td>2019-01-15</td>
-                                <td>4:07</td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-arrow-down-circle"></i>
-                                        </div>
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-heart"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="text-white">
-                                <td>Can I be him</td>
-                                <td>Back from Past</td>
-                                <td>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </td>
-                                <td>2019-01-15</td>
-                                <td>4:07</td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-arrow-down-circle"></i>
-                                        </div>
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-heart"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="text-white">
-                                <td>Can I be him</td>
-                                <td>Back from Past</td>
-                                <td>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </td>
-                                <td>2019-01-15</td>
-                                <td>4:07</td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-arrow-down-circle"></i>
-                                        </div>
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-heart"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="text-white">
-                                <td>Can I be him</td>
-                                <td>Back from Past</td>
-                                <td>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </td>
-                                <td>2019-01-15</td>
-                                <td>4:07</td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-arrow-down-circle"></i>
-                                        </div>
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-heart"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="text-white">
-                                <td>Can I be him</td>
-                                <td>Back from Past</td>
-                                <td>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </td>
-                                <td>2019-01-15</td>
-                                <td>4:07</td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-arrow-down-circle"></i>
-                                        </div>
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-heart"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="text-white">
-                                <td>Can I be him</td>
-                                <td>Back from Past</td>
-                                <td>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </td>
-                                <td>2019-01-15</td>
-                                <td>4:07</td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-arrow-down-circle"></i>
-                                        </div>
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-heart"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="text-white">
-                                <td>Can I be him</td>
-                                <td>Back from Past</td>
-                                <td>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </td>
-                                <td>2019-01-15</td>
-                                <td>4:07</td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-arrow-down-circle"></i>
-                                        </div>
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-heart"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="text-white">
-                                <td>Can I be him</td>
-                                <td>Back from Past</td>
-                                <td>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </td>
-                                <td>2019-01-15</td>
-                                <td>4:07</td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-arrow-down-circle"></i>
-                                        </div>
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-heart"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="text-white">
-                                <td>Can I be him</td>
-                                <td>Back from Past</td>
-                                <td>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </td>
-                                <td>2019-01-15</td>
-                                <td>4:07</td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-arrow-down-circle"></i>
-                                        </div>
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-heart"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="text-white">
-                                <td>Can I be him</td>
-                                <td>Back from Past</td>
-                                <td>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </td>
-                                <td>2019-01-15</td>
-                                <td>4:07</td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-arrow-down-circle"></i>
-                                        </div>
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-heart"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="text-white">
-                                <td>Can I be him</td>
-                                <td>Back from Past</td>
-                                <td>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </td>
-                                <td>2019-01-15</td>
-                                <td>4:07</td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-arrow-down-circle"></i>
-                                        </div>
-                                        <div style="margin-left: 15px;margin-right: 15px">
-                                            <i class="bi bi-heart"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

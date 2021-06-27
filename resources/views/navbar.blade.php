@@ -6,7 +6,7 @@
     <div>
         Passez sur l'application
     </div>
-    <a href="" class="text-dark">Application ici</a>
+    <a href="https://projectfinalionic.herokuapp.com/" class="text-dark">Application ici</a>
 </div>
 @if(session('user') !== null)
         <nav class="navbar navbar-expand-lg navbar-light vh-100 p-0" style="background-color: rgba(255,255,255,0.1);width: 15vw;">

@@ -18,92 +18,26 @@
                     <hr>
                     <div style="overflow-x: scroll" class="scroll">
                         <div style="width: 100%;" class="d-flex mt-3 mb-3 text-center">
-                            <a href="{{ url('artist') }}" class="text-decoration-none text-white" style="width: 225px;margin-left: 15px;margin-right: 15px">
-                                <div>
-                                    <img src="./img/artist.png">
-                                </div>
-                                <div class="text-white w-100 mt-3 fw-bold">Adele</div>
-                                <div class="text-white w-100 mt-3 ">20 Musiques</div>
-                            </a>
-                            <div style="width: 225px;margin-left: 15px;margin-right: 15px">
-                                <div>
-                                    <img src="./img/artist.png">
-                                </div>
-                                <div class="text-white w-100 mt-3 fw-bold">Adele</div>
-                                <div class="text-white w-100 mt-3 ">20 Musiques</div>
-                            </div>
-                            <div style="width: 225px;margin-left: 15px;margin-right: 15px">
-                                <div>
-                                    <img src="./img/artist.png">
-                                </div>
-                                <div class="text-white w-100 mt-3 fw-bold">Adele</div>
-                                <div class="text-white w-100 mt-3 ">20 Musiques</div>
-                            </div>
-                            <div style="width: 225px;margin-left: 15px;margin-right: 15px">
-                                <div>
-                                    <img src="./img/artist.png">
-                                </div>
-                                <div class="text-white w-100 mt-3 fw-bold">Adele</div>
-                                <div class="text-white w-100 mt-3 ">20 Musiques</div>
-                            </div>
-                            <div style="width: 225px;margin-left: 15px;margin-right: 15px">
-                                <div>
-                                    <img src="./img/artist.png">
-                                </div>
-                                <div class="text-white w-100 mt-3 fw-bold">Adele</div>
-                                <div class="text-white w-100 mt-3 ">20 Musiques</div>
-                            </div>
-                            <div style="width: 225px;margin-left: 15px;margin-right: 15px">
-                                <div>
-                                    <img src="./img/artist.png">
-                                </div>
-                                <div class="text-white w-100 mt-3 fw-bold">Adele</div>
-                                <div class="text-white w-100 mt-3 ">20 Musiques</div>
-                            </div>
+                            @foreach($firstArray as $artist)
+                                <a href="{{ url('artist/'.$artist->id) }}" class="text-decoration-none text-white" style="width: 225px;margin-left: 15px;margin-right: 15px">
+                                    <div>
+                                        <img src="{{ $artist->url }}">
+                                    </div>
+                                    <div class="text-white w-100 mt-3 fw-bold">{{ $artist->name }}</div>
+                                    <div class="text-white w-100 mt-3 ">20 Musiques</div>
+                                </a>
+                            @endforeach
                         </div>
                         <div style="width: 100%;" class="d-flex mt-3 mb-3 text-center">
-                            <div style="width: 225px;margin-left: 15px;margin-right: 15px">
-                                <div>
-                                    <img src="./img/artist.png">
-                                </div>
-                                <div class="text-white w-100 mt-3 fw-bold">Adele</div>
-                                <div class="text-white w-100 mt-3 ">20 Musiques</div>
-                            </div>
-                            <div style="width: 225px;margin-left: 15px;margin-right: 15px">
-                                <div>
-                                    <img src="./img/artist.png">
-                                </div>
-                                <div class="text-white w-100 mt-3 fw-bold">Adele</div>
-                                <div class="text-white w-100 mt-3 ">20 Musiques</div>
-                            </div>
-                            <div style="width: 225px;margin-left: 15px;margin-right: 15px">
-                                <div>
-                                    <img src="./img/artist.png">
-                                </div>
-                                <div class="text-white w-100 mt-3 fw-bold">Adele</div>
-                                <div class="text-white w-100 mt-3 ">20 Musiques</div>
-                            </div>
-                            <div style="width: 225px;margin-left: 15px;margin-right: 15px">
-                                <div>
-                                    <img src="./img/artist.png">
-                                </div>
-                                <div class="text-white w-100 mt-3 fw-bold">Adele</div>
-                                <div class="text-white w-100 mt-3 ">20 Musiques</div>
-                            </div>
-                            <div style="width: 225px;margin-left: 15px;margin-right: 15px">
-                                <div>
-                                    <img src="./img/artist.png">
-                                </div>
-                                <div class="text-white w-100 mt-3 fw-bold">Adele</div>
-                                <div class="text-white w-100 mt-3 ">20 Musiques</div>
-                            </div>
-                            <div style="width: 225px;margin-left: 15px;margin-right: 15px">
-                                <div>
-                                    <img src="./img/artist.png">
-                                </div>
-                                <div class="text-white w-100 mt-3 fw-bold">Adele</div>
-                                <div class="text-white w-100 mt-3 ">20 Musiques</div>
-                            </div>
+                            @foreach($secondArray as $artist)
+                                <a href="{{ url('artist/'.$artist->id) }}" class="text-decoration-none text-white" style="width: 225px;margin-left: 15px;margin-right: 15px">
+                                    <div>
+                                        <img src="./img/artist.png">
+                                    </div>
+                                    <div class="text-white w-100 mt-3 fw-bold">{{ $artist->name }}</div>
+                                    <div class="text-white w-100 mt-3 ">20 Musiques</div>
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>

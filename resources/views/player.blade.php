@@ -9,7 +9,7 @@
         </div>
         <div style="margin-right: 10px;margin-left: 10px;">
             <a>
-                Heena Maka<br>Harshadewa FT. Ravi Jay
+                <div id="artistDisplay">Artist</div><br><div id="musicDisplay">Music</div>
             </a>
         </div>
         <div style="margin-right: 10px;margin-left: 10px;">
@@ -33,11 +33,17 @@
                 <path id="Backward" d="M8,0V4L0,0V10L8,6v4h2V0Z" transform="translate(10 10) rotate(180)" fill="#b3b3b3"/>
             </svg>
         </a>
-        <a>
+        <a id="pausebtn" onclick="pause()" style="display: none;" >
             <svg xmlns="http://www.w3.org/2000/svg" width="40.322" height="40.322" viewBox="0 0 40.322 40.322">
                 <circle id="Oval" cx="19.5" cy="19.5" r="19.5" transform="translate(0.661 0.661)" fill="none" stroke="#b3b3b3" stroke-miterlimit="10" stroke-width="1.322"/>
                 <rect id="Rectangle" width="3" height="17" rx="1.5" transform="translate(14.661 11.661)" fill="#d8d8d8"/>
                 <rect id="Rectangle_Copy" data-name="Rectangle Copy" width="3" height="17" rx="1.5" transform="translate(22.661 11.661)" fill="#d8d8d8"/>
+            </svg>
+        </a>
+        <a id="replaybtn" onclick="play()" style="display: block;">
+            <svg id="play-circle" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+                <path id="Tracé_1" data-name="Tracé 1" d="M20,37.5A17.5,17.5,0,1,1,37.5,20,17.5,17.5,0,0,1,20,37.5ZM20,40A20,20,0,1,0,0,20,20,20,0,0,0,20,40Z" fill="#a6a7a8"/>
+                <path id="Tracé_2" data-name="Tracé 2" d="M6.83,5.169a1.531,1.531,0,0,1,1.592.116l10.715,7.654a1.531,1.531,0,0,1,0,2.492L8.422,23.085A1.531,1.531,0,0,1,6,21.839V6.532a1.531,1.531,0,0,1,.83-1.362Z" transform="translate(7.111 5.815)" fill="#a6a7a8"/>
             </svg>
         </a>
         <a>
@@ -86,3 +92,31 @@
         </a>
     </div>
 </section>
+<script>
+    let audio;
+    window.onload = displayNone;
+    let pausebtn = document.getElementById('pausebtn');
+    let replaybtn = document.getElementById('replaybtn');
+    let isplayded = false;
+    function displayNone(){
+        pausebtn.style.display = 'none';
+    }
+    function play($url, $artist, $music){
+        if(!isplayded){
+            audio = new Audio($url);
+            audio.play();
+            replaybtn.style.display = 'none';
+            pausebtn.style.display = 'block';
+            artistDisplay.innerHTML = $artist;
+            musicDisplay.innerHTML = $music;
+            isplayded = true;
+        }
+
+    }
+    function pause(){
+        audio.pause()
+        pausebtn.style.display = 'none';
+        replaybtn.style.display = 'block';
+        isplayded = false;
+    }
+</script>

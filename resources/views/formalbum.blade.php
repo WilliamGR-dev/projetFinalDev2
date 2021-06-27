@@ -16,27 +16,39 @@
                 <h1 class="text-white">Dashboard</h1>
                 @include('navbarprofile')
                 <hr>
-                <h3 class="text-white">Utilisateurs</h3>
-                <form class="w-90">
+                <h3 class="text-white">Albums</h3>
+                <form action="{{ url('addalbum') }}" method="post" class="w-90" enctype="multipart/form-data">
+                    @csrf
                     <div style="margin-bottom: 20px">
-                        <label>Prenom</label>
-                        <input class="form-control">
+                        <label>Titre</label>
+                        <input class="form-control" type="text" name="title">
                     </div>
                     <div style="margin-bottom: 20px">
-                        <label>nom</label>
-                        <input class="form-control">
+                        <label>Date</label>
+                        <input class="form-control" type="date" name="date">
                     </div>
                     <div style="margin-bottom: 20px">
-                        <label>email</label>
-                        <input class="form-control">
+                        <label>Description</label>
+                        <input class="form-control" name="description">
                     </div>
                     <div style="margin-bottom: 20px">
-                        <label>password</label>
-                        <input class="form-control">
+                        <label>Artiste</label>
+                        <select name="artist">
+                            @foreach($allArtist as $artist)
+                            <option value="{{ $artist->id }}">{{ $artist->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div style="margin-bottom: 20px">
-                        <label>password</label>
-                        <input class="form-control">
+                        <label>Publier</label>
+                        <select name="publish">
+                            <option value="1">Oui</option>
+                            <option value="0">Non</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 20px">
+                        <label>image</label>
+                        <input class="form-control" name="url" type="file">
                     </div>
                     <button class="btn btn-light rounded-pill" style="margin-right: 10px">Annuler</button>
                     <button class="btn btn-light rounded-pill" style="margin-left: 10px">Enregistrer</button>

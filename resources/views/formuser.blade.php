@@ -17,6 +17,7 @@
                 @include('navbarprofile')
                 <hr>
                 <h3 class="text-white">Utilisateurs</h3>
+                @include('errors')
                 @if(isset($user))
                     <form class="w-90" method="post" action="{{ url('modifyuser/'.$user->id) }}">
                         @csrf

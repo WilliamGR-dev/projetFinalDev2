@@ -16,27 +16,44 @@
                 <h1 class="text-white">Dashboard</h1>
                 @include('navbarprofile')
                 <hr>
-                <h3 class="text-white">Utilisateurs</h3>
-                <form class="w-90">
+                @include('errors')
+                <h3 class="text-white">Musique</h3>
+                <form class="w-90" action="{{ url('addmusic') }}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div style="margin-bottom: 20px">
-                        <label>Prenom</label>
-                        <input class="form-control">
+                        <label>Title</label>
+                        <input class="form-control" name="title">
                     </div>
                     <div style="margin-bottom: 20px">
-                        <label>nom</label>
-                        <input class="form-control">
+                        <label>Date</label>
+                        <input class="form-control" type="date" name="date">
                     </div>
                     <div style="margin-bottom: 20px">
-                        <label>email</label>
-                        <input class="form-control">
+                        <label>Album</label>
+                        <select name="album">
+                            @foreach($allAlbums as $album)
+                                <option value="{{ $album->id }}">{{ $album->title }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div style="margin-bottom: 20px">
-                        <label>password</label>
-                        <input class="form-control">
+                        <label>Genre</label>
+                        <select name="genre">
+                            @foreach($allGenres as $genre)
+                            <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div style="margin-bottom: 20px">
-                        <label>password</label>
-                        <input class="form-control">
+                        <label>Musique</label>
+                        <input class="form-control" type="file" name="music">
+                    </div>
+                    <div style="margin-bottom: 20px">
+                        <label>Publish</label>
+                        <select name="publish">
+                            <option value="1">Oui</option>
+                            <option value="0">Non</option>
+                        </select>
                     </div>
                     <button class="btn btn-light rounded-pill" style="margin-right: 10px">Annuler</button>
                     <button class="btn btn-light rounded-pill" style="margin-left: 10px">Enregistrer</button>

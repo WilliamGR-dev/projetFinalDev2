@@ -16,10 +16,11 @@
                 <h1 class="text-white">News</h1>
                 @include('navbarprofile')
                 <hr>
-                <div>
+                <div class="mb-5">
                     <h3>Ajouter une news</h3>
                     <a href="{{ url('formnew') }}" class="btn btn-light text-dark text-decoration-none">Ajouter</a>
                 </div>
+                @include('errors')
                 <table class="w-90 table table-striped table-light table-hover" style="margin-top: 50px">
                     <thead>
                     <tr>

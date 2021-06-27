@@ -16,29 +16,28 @@
                     <h1 class="text-white">Dashboard</h1>
                     @include('navbarprofile')
                     <hr>
-                    <h3 class="text-white">Utilisateurs</h3>
-                    <form class="w-90">
+                    <h3 class="text-white">Artist</h3>
+                    <form method="post" action="{{url('/addartist')}}" class="w-90" enctype="multipart/form-data">
+                        @csrf
                         <div style="margin-bottom: 20px">
-                            <label>Prenom</label>
-                            <input class="form-control">
+                            <label>Name</label>
+                            <input class="form-control" name="name" type="text">
                         </div>
                         <div style="margin-bottom: 20px">
-                            <label>nom</label>
-                            <input class="form-control">
+                            <label>Description</label>
+                            <input class="form-control" name="description" type="text">
                         </div>
                         <div style="margin-bottom: 20px">
-                            <label>email</label>
-                            <input class="form-control">
+                            <label>Url</label>
+                            <input class="form-control" name="url" type="file">
                         </div>
                         <div style="margin-bottom: 20px">
-                            <label>password</label>
-                            <input class="form-control">
+                            <label>Publish</label>
+                            <select name="publish">
+                                <option value="1">Oui</option>
+                                <option value="0">Non</option>
+                            </select>
                         </div>
-                        <div style="margin-bottom: 20px">
-                            <label>password</label>
-                            <input class="form-control">
-                        </div>
-                        <button class="btn btn-light rounded-pill" style="margin-right: 10px">Annuler</button>
                         <button class="btn btn-light rounded-pill" style="margin-left: 10px">Enregistrer</button>
                     </form>
                 </div>

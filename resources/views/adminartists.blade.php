@@ -20,31 +20,30 @@
                         <h3>Ajouter un artists</h3>
                         <a href="{{ url('formartist') }}" class="btn btn-light text-dark text-decoration-none">Ajouter</a>
                     </div>
+                    @include('errors')
                     <table class="w-90 table table-striped table-light table-hover" style="margin-top: 50px">
                         <thead>
                         <tr>
                             <td>NOM</td>
                             <td>PRENOM</td>
                             <td>EMAIL</td>
-                            <td>IS ADMIN</td>
-                            <td>CREATED AT</td>
                             <td>ACTIONS</td>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>William</td>
-                            <td>William</td>
-                            <td>William@gmail.com</td>
-                            <td>Admin</td>
-                            <td>30/05/2021</td>
-                            <td>
-                                <div class="d-flex flex-row">
-                                    <div style="margin: 0 10px"><a>Modifier</a></div>
-                                    <div style="margin: 0 10px"><a>Supprimer</a></div>
-                                </div>
-                            </td>
-                        </tr>
+                        @foreach($allArtists as $artist)
+                            <tr>
+                                <td>{{ $artist->name  }}</td>
+                                <td>{{ $artist->description }}</td>
+                                <td>@if($artist->publish==1)Publier @else Non publier @endif</td>
+                                <td>
+                                    <div class="d-flex flex-row">
+                                        <div style="margin: 0 10px"><a href="{{ url('/modifyartist/'.$artist->id) }}">Modifier</a></div>
+                                        <div style="margin: 0 10px"><a href="{{ url('/deleteartist/'.$artist->id) }}">Supprimer</a></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

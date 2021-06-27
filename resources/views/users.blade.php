@@ -20,6 +20,7 @@
                         <h3>Ajouter un utilisateurs</h3>
                         <a href="{{ url('formuser') }}" class="btn btn-light">Ajouter</a>
                     </div>
+                    @include('errors')
                     <table class="w-90 table table-striped table-light table-hover" style="margin-top: 50px">
                         <thead>
                         <tr>

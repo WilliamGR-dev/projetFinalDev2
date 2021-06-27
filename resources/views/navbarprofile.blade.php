@@ -6,6 +6,7 @@
         <a href="{{ url('adminartists') }}" class="text-white text-decoration-none" style="margin-left: 10px;margin-right: 10px">Artistes</a>
         <a href="{{ url('adminalbums') }}" class="text-white text-decoration-none" style="margin-left: 10px;margin-right: 10px">Albums</a>
         <a href="{{ url('adminmusic') }}" class="text-white text-decoration-none" style="margin-left: 10px;margin-right: 10px">Musique</a>
+        <a href="{{ url('admingenres') }}" class="text-white text-decoration-none" style="margin-left: 10px;margin-right: 10px">Genres</a>
         <a href="{{ url('adminnews') }}" class="text-white text-decoration-none" style="margin-left: 10px;margin-right: 10px">News</a>
         <a href="{{ url('adminsubscribes') }}" class="text-white text-decoration-none" style="margin-left: 10px;margin-right: 10px">Subscribes</a>
     @endif

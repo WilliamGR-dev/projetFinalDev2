@@ -19,11 +19,11 @@
 
     ## end
 
-    {{ $information['end'] }}
+    {{ $information['last'] }}
 
     ## price
 
-    {{ $information['price'] }}
+    {{ $information['prix'] }}
 
 
 @endcomponent

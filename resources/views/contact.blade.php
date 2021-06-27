@@ -20,16 +20,17 @@
                 <div class="mt-4 w-100">
                     <h3 class="mb-4">Youzik Information</h3>
                     <div class="card text-dark p-5" style="padding-left: 30px !important;padding-top: 30px !important;border-radius: 22px">
-                        <span>WebStart</span>
-                        <span>19 rue Yves Toudic</span>
-                        <span>75010 Paris</span>
-                        <span>France</span>
-                        <span>Tel : 01 42 41 97 76</span>
+                        <span>{{ config('adresse.entreprise') }}</span>
+                        <span>{{ config('adresse.rue') }}</span>
+                        <span>{{ config('adresse.postal_code') }}</span>
+                        <span>{{ config('adresse.country') }}</span>
+                        <span>Tel : {{ config('adresse.number') }}</span>
                     </div>
                 </div>
             </div>
             <div class="card bg-transparent border-0 w-75 p-5 pt-1">
                 <div class="card-body p-0" id="login">
+                    @include('errors')
                     <form action="{{ url('contact') }}" method="post" class="d-flex flex-column text">
                         @csrf
                         <input type="text" class="input mt-3 text-white" name="first_name" placeholder="PRENOM">
